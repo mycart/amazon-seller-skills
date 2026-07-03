@@ -101,6 +101,11 @@ cd /Users/apple/Documents/amazon-seller-skills
 scripts/sync-skill.sh amazon-ppc-campaign2 "/Users/apple/.agents/skills/amazon-ppc-campaign2" "Sync amazon-ppc-campaign2"
 ```
 
+The sync script first runs `git pull --rebase origin main`, then copies the
+local skill into the repository, commits the change, and pushes it back to
+GitHub. That keeps the monorepo safer when several teammates are updating
+skills over time.
+
 Sync all currently shared team skills:
 
 ```bash
