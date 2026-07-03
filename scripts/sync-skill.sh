@@ -13,6 +13,14 @@ if [ ! -f "${SOURCE_DIR}/SKILL.md" ]; then
   exit 1
 fi
 
+cd "${REPO_ROOT}"
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  echo "ERROR: ${REPO_ROOT} has uncommitted changes. Commit or stash them before syncing." >&2
+  exit 1
+fi
+
+git pull --rebase origin main
+
 mkdir -p "${TARGET_DIR}"
 rsync -a --delete \
   --exclude ".git" \
@@ -20,7 +28,6 @@ rsync -a --delete \
   --exclude ".DS_Store" \
   "${SOURCE_DIR}/" "${TARGET_DIR}/"
 
-cd "${REPO_ROOT}"
 git add "${SKILL_NAME}"
 if git diff --cached --quiet; then
   echo "No changes to commit for ${SKILL_NAME}."
