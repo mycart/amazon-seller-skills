@@ -1,48 +1,43 @@
 # Amazon Seller Skills
 
-This repository is a monorepo for Codex skills used by the team.
+这个仓库用于集中维护团队共享的 Amazon 卖家相关 Codex skills，采用单仓库、多技能目录的方式管理。
 
-## Skills
+## 当前技能
 
+- `ads-amazon2`
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
-- `ads-amazon2`
+- `amazon-product-research2`
 
-## Install
+## 安装示例
 
-Install a single skill from this repository:
+按需安装单个 skill：
 
 ```bash
-npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
+npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
 ```
 
-More examples:
+更多示例：
 
 ```bash
-npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
+npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
+npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 ```
 
-## Team Guide
+## 团队使用说明
 
-Detailed installation notes, example prompts, and the current shared skill list
-are in [TEAM-USAGE.md](/Users/apple/Documents/amazon-seller-skills/TEAM-USAGE.md).
+更完整的安装说明、适用场景、示例提示词和同步流程见 [TEAM-USAGE.md](/Users/apple/Documents/amazon-seller-skills/TEAM-USAGE.md)。
 
-## Sync Local Changes
+## 同步命令
 
-After editing a local skill, run this from the repository root:
+同步单个 skill：
 
 ```bash
-scripts/sync-skill.sh amazon-listing-optimization2 /path/to/local/amazon-listing-optimization2
+scripts/sync-skill.sh <skill-name> /path/to/local/skill
 ```
 
-For this machine, the current workspace copy is:
-
-```bash
-scripts/sync-skill.sh amazon-listing-optimization2 "/Users/apple/Documents/Listing优化建议/.agents/skills/amazon-listing-optimization2"
-```
-
-To sync all currently shared team skills in one go:
+同步当前全部共享 skill：
 
 ```bash
 scripts/sync-all-team-skills.sh
