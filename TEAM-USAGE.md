@@ -9,6 +9,7 @@
 ## 当前已共享技能
 
 - `ads-amazon2`
+- `amazon-asin-availability-monitor2`
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
@@ -19,6 +20,7 @@
 
 ```bash
 npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
+npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-monitor2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
@@ -42,6 +44,22 @@ Use ads-amazon2 to audit my Amazon advertising account. I have Sponsored Product
 
 ```text
 Use ads-amazon2 to review my last 60 days of Amazon Ads reports and generate an Amazon Ads Health Score with a prioritized action plan.
+```
+
+### `amazon-asin-availability-monitor2`
+
+简介：
+
+- 用于在没有 SP-API 权限时，通过 Amazon 前台页面监控自有 ASIN 是否可购买，并在异常时通过邮件和飞书通知。
+
+示例提示词：
+
+```text
+使用 amazon-asin-availability-monitor2，帮我创建 ASIN 可购买性监控模板。
+```
+
+```text
+使用 amazon-asin-availability-monitor2，检查当前工作区的 config.yaml 和 Excel 清单是否配置正确。
 ```
 
 ### `amazon-listing-optimization2`
@@ -113,6 +131,7 @@ scripts/sync-all-team-skills.sh
 当前这个仓库对应的本地技能源路径如下：
 
 - `ads-amazon2` -> `/Users/apple/.agents/skills/ads-amazon2`
+- `amazon-asin-availability-monitor2` -> `/Users/apple/.agents/skills/amazon-asin-availability-monitor2`
 - `amazon-listing-optimization2` -> `/Users/apple/.agents/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
