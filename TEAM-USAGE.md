@@ -9,6 +9,7 @@
 ## 当前已共享技能
 
 - `ads-amazon2`
+- `amazon-asin-availability-monitor2`
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
@@ -19,6 +20,7 @@
 
 ```bash
 npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
+npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-monitor2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
@@ -44,11 +46,27 @@ Use ads-amazon2 to audit my Amazon advertising account. I have Sponsored Product
 Use ads-amazon2 to review my last 60 days of Amazon Ads reports and generate an Amazon Ads Health Score with a prioritized action plan.
 ```
 
+### `amazon-asin-availability-monitor2`
+
+简介：
+
+- 用于在没有 SP-API 权限时，通过 Amazon 前台页面监控自有 ASIN 是否可购买，并在异常时通过邮件和飞书通知。
+
+示例提示词：
+
+```text
+使用 amazon-asin-availability-monitor2，帮我创建 ASIN 可购买性监控模板。
+```
+
+```text
+使用 amazon-asin-availability-monitor2，检查当前工作区的 config.yaml 和 Excel 清单是否配置正确。
+```
+
 ### `amazon-listing-optimization2`
 
 简介：
 
-- 用于创建新 Listing、审计现有 Listing，并输出关键词覆盖、文案优化与 2026 版标题/Item Highlights 方案。
+- 用于创建新 Listing、审计现有 Listing，并输出关键词覆盖、文案优化与标题/卖点方案。
 
 示例提示词：
 
@@ -57,7 +75,7 @@ Create a listing for a portable blender. Keywords: portable blender, smoothie ma
 ```
 
 ```text
-Use amazon-listing-optimization2 to optimize ASIN B0XXXXXXX. Please output the full optimized listing, detailed audit report, July 2026 title options, and Excel report.
+Use amazon-listing-optimization2 to optimize ASIN B0XXXXXXX. Please output the full optimized listing, detailed audit report, title options, and Excel report.
 ```
 
 ### `amazon-ppc-campaign2`
@@ -103,7 +121,7 @@ cd /Users/apple/Documents/amazon-seller-skills
 scripts/sync-skill.sh <skill-name> "/path/to/local/skill" "Sync <skill-name>"
 ```
 
-同步当前全部已共享团队技能：
+同步当前全部共享 skill：
 
 ```bash
 cd /Users/apple/Documents/amazon-seller-skills
@@ -113,6 +131,7 @@ scripts/sync-all-team-skills.sh
 当前这个仓库对应的本地技能源路径如下：
 
 - `ads-amazon2` -> `/Users/apple/.agents/skills/ads-amazon2`
+- `amazon-asin-availability-monitor2` -> `/Users/apple/.agents/skills/amazon-asin-availability-monitor2`
 - `amazon-listing-optimization2` -> `/Users/apple/.agents/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`

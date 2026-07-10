@@ -1,0 +1,6 @@
+interface:
+  display_name: "Amazon ASIN 可购买性监控"
+  short_description: "监控 Amazon ASIN 前台可购买状态"
+  default_prompt: "Use $amazon-asin-availability-monitor2 to check configured Amazon ASIN availability from the workspace Excel file."
+policy:
+  allow_implicit_invocation: true
