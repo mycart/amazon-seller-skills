@@ -9,11 +9,6 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync ads-amazon2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
-  amazon-asin-availability-monitor2 \
-  "/Users/apple/.agents/skills/amazon-asin-availability-monitor2" \
-  "Sync amazon-asin-availability-monitor2"
-
-"${REPO_ROOT}/scripts/sync-skill.sh" \
   amazon-listing-optimization2 \
   "/Users/apple/.agents/skills/amazon-listing-optimization2" \
   "Sync amazon-listing-optimization2"

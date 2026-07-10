@@ -5,7 +5,6 @@
 ## 当前技能
 
 - `ads-amazon2`
-- `amazon-asin-availability-monitor2`
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
@@ -15,13 +14,12 @@
 按需安装单个 skill：
 
 ```bash
-npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-monitor2 -g
+npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
 ```
 
 更多示例：
 
 ```bash
-npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
