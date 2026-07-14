@@ -10,6 +10,7 @@
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
 - `monitor-asin-sale-chrome`
+- `monitor-amazon-listing-chrome`
 
 ## 安装示例
 
@@ -27,6 +28,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
+npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 ```
 
 ## 团队使用说明

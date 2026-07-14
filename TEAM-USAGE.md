@@ -14,6 +14,7 @@
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
 - `monitor-asin-sale-chrome`
+- `monitor-amazon-listing-chrome`
 
 ## 安装方式
 
@@ -26,6 +27,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
+npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 ```
 
 如果只需要其中一个 skill，只执行对应那一条命令即可。
@@ -128,6 +130,25 @@ Should I sell "phone cases" or "phone stands"? Compare both opportunities
 使用 monitor-asin-sale-chrome，使用 Codex Chrome 插件复核异常 ASIN，并输出最终确认结果。
 ```
 
+### `monitor-amazon-listing-chrome`
+
+简介：
+
+- 使用 Codex Chrome 插件监控多国家 Amazon ASIN 前台 Listing 的完整度和编写质量，按 ASIN + 国家生成评分、问题摘要、核心优化建议及 Excel、Markdown、JSON 报告。
+- 支持当前工作目录配置、异常截图，以及按配置发送邮件和飞书通知；邮件可附加 Excel 报告。
+
+示例提示词：
+
+```text
+使用 monitor-amazon-listing-chrome，读取当前工作目录的 config.yaml，检查 Excel 中全部 ASIN + 国家站点的 Listing 完整度和质量，生成 Excel、Markdown、JSON 报告；如果配置启用了邮件或飞书，请发送报告。
+```
+
+安装：
+
+```bash
+npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
+```
+
 ## 后续同步流程
 
 这个仓库已经内置同步脚本。后续本地某个 skill 内容有修改时，可以按下面方式同步。
@@ -154,6 +175,7 @@ scripts/sync-all-team-skills.sh
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
 - `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`
+- `monitor-amazon-listing-chrome` -> `/Users/apple/.codex/skills/monitor-amazon-listing-chrome`
 
 ## 团队建议
 
