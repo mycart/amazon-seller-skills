@@ -1,0 +1,6 @@
+interface:
+  display_name: "Amazon ASIN 销售状态 Chrome 监控"
+  short_description: "用 Codex Chrome 插件监控 Amazon ASIN 前台销售状态并导出 Excel"
+  default_prompt: "Use $monitor-asin-sale-chrome to check configured Amazon ASIN sale status with the Codex Chrome plugin and export an Excel report."
+policy:
+  allow_implicit_invocation: true

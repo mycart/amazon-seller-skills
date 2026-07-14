@@ -13,6 +13,7 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `monitor-asin-sale-chrome`
 
 ## 安装方式
 
@@ -24,6 +25,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
 ```
 
 如果只需要其中一个 skill，只执行对应那一条命令即可。
@@ -110,6 +112,22 @@ Research "wireless earbuds" as a product opportunity on Amazon
 Should I sell "phone cases" or "phone stands"? Compare both opportunities
 ```
 
+### `monitor-asin-sale-chrome`
+
+简介：
+
+- 使用 Codex Chrome 插件监控 Amazon ASIN 前台可售状态，按 ASIN+国家/站点输出最终结论并导出 Excel 报告。
+
+示例提示词：
+
+```text
+使用 monitor-asin-sale-chrome，检查当前工作区的 Amazon ASIN 清单，并导出按 ASIN+国家/站点汇总的可售状态 Excel 报告。
+```
+
+```text
+使用 monitor-asin-sale-chrome，使用 Codex Chrome 插件复核异常 ASIN，并输出最终确认结果。
+```
+
 ## 后续同步流程
 
 这个仓库已经内置同步脚本。后续本地某个 skill 内容有修改时，可以按下面方式同步。
@@ -135,6 +153,7 @@ scripts/sync-all-team-skills.sh
 - `amazon-listing-optimization2` -> `/Users/apple/.agents/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
+- `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`
 
 ## 团队建议
 
