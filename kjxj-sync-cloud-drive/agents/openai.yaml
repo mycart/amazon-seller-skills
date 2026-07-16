@@ -1,0 +1,4 @@
+interface:
+  display_name: "KJXJ Cloud Drive Sync"
+  short_description: "文件、文本台账与操作日志安全同步到云盘"
+  default_prompt: "Use $kjxj-sync-cloud-drive to inspect a file or text record, propose its cloud-drive destination and operation, then wait for confirmation before synchronizing and recording the monthly log."
