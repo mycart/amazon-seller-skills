@@ -1,0 +1,4 @@
+interface:
+  display_name: "Monitor Amazon Listing Chrome"
+  short_description: "使用 Chrome 插件监控多国家 Amazon ASIN Listing 完整度并生成报告。"
+  default_prompt: "使用 $monitor-amazon-listing-chrome 读取配置文件并检查所有 ASIN + 国家站点的 Listing 完整度。"

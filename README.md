@@ -11,6 +11,7 @@
 - `amazon-product-research2`
 - `kjxj-sync-cloud-drive`
 - `monitor-asin-sale-chrome`
+- `monitor-amazon-listing-chrome`
 
 ## 安装示例
 
@@ -29,6 +30,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
+npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 ```
 
 ## 团队使用说明
