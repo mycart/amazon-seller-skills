@@ -14,6 +14,12 @@ if [ ! -f "${SOURCE_DIR}/SKILL.md" ]; then
 fi
 
 cd "${REPO_ROOT}"
+CURRENT_BRANCH="$(git branch --show-current)"
+if [ "${CURRENT_BRANCH}" != "main" ]; then
+  echo "ERROR: run this script from the main branch; merge and delete temporary branches before syncing." >&2
+  exit 1
+fi
+
 if ! git diff --quiet || ! git diff --cached --quiet; then
   echo "ERROR: ${REPO_ROOT} has uncommitted changes. Commit or stash them before syncing." >&2
   exit 1

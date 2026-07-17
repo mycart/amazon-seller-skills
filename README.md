@@ -9,6 +9,7 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-sync-cloud-drive`
 - `monitor-asin-sale-chrome`
 
 ## 安装示例
@@ -26,6 +27,7 @@ npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
 ```
 
@@ -46,3 +48,5 @@ scripts/sync-skill.sh <skill-name> /path/to/local/skill
 ```bash
 scripts/sync-all-team-skills.sh
 ```
+
+后续同步统一在 `main` 分支执行并推送到 `origin/main`。如曾使用临时分支修改 skill，必须先合并到 `main`，确认 `main` 推送成功后删除本地和远端临时分支，避免技能版本分散在功能分支。

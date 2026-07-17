@@ -29,6 +29,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync amazon-product-research2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-sync-cloud-drive \
+  "/Users/apple/.agents/skills/kjxj-sync-cloud-drive" \
+  "Sync kjxj-sync-cloud-drive"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   monitor-asin-sale-chrome \
   "/Users/apple/.codex/skills/monitor-asin-sale-chrome" \
   "Sync monitor-asin-sale-chrome"
