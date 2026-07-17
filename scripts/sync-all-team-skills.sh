@@ -37,3 +37,8 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   monitor-asin-sale-chrome \
   "/Users/apple/.codex/skills/monitor-asin-sale-chrome" \
   "Sync monitor-asin-sale-chrome"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  monitor-amazon-listing-chrome \
+  "/Users/apple/.codex/skills/monitor-amazon-listing-chrome" \
+  "Sync monitor-amazon-listing-chrome"
