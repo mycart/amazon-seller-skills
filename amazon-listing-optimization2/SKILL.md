@@ -1,7 +1,6 @@
 ---
 name: amazon-listing-optimization2
-description: "Amazon listing builder and optimizer for sellers. Two modes: (A) Create — build keyword-optimized listings from scratch using keyword lists + product characteristics + AI copywriting, (B) Optimize — audit existing listings, find keyword gaps, score across 8 dimensions, and rewrite with missing keywords. Also adds July 2026 compact title + item highlights option sets and full Excel report export for both Create and Optimize modes. Can optionally ingest user-uploaded CSV/XLSX keyword files as an extra keyword data source for both modes, and integrate user-provided core selling points into listing optimization without changing the core workflow. Explanatory, diagnostic, and strategy text in responses must be Chinese. Integrates with amazon-keyword-research for keyword input. Works on 12 Amazon marketplaces. No API key required. Use when: (1) creating a new Amazon listing from keywords, (2) auditing an existing listing for SEO and conversion, (3) checking keyword coverage in title/bullets/description, (4) generating listing copy with target keywords and tone, (5) comparing listings against competitors, (6) preparing a listing for launch or relaunch, (7) generating 2026-compliant title and item highlights options, (8) using uploaded keyword CSV/XLSX files to enrich listing keyword coverage, (9) incorporating product core selling points into Amazon listing copy, (10) exporting all listing output, audit report, keyword analysis, and recommendations to Excel."
-metadata: {"nexscope":{"emoji":"📝","category":"amazon"}}
+description: "Create and optimize Amazon listings in 12 marketplaces using product facts, keywords, competitor listings, optional CSV/XLSX keyword files, and seller-provided core selling points. Supports new-listing creation, existing-listing audits, keyword coverage and gap analysis, 8-dimension scoring, listing rewrites, competitive comparison, Chinese diagnostics, full Excel report export, and three ranked July 2026 Title + Item Highlights options. Preserve the legacy 200-character title workflow as a compatibility reference while generating a recommended 75-character Title and 125-character Item Highlights pair under Amazon's 2026 rules. Use for Amazon listing creation, optimization, SEO coverage, relaunch preparation, title/highlights generation, and report export."
 ---
 
 # Amazon Listing Optimization 2 📝
@@ -41,9 +40,19 @@ npx skills add nexscope-ai/Amazon-Skills --skill amazon-listing-optimization -g
 - **Uploaded keyword file enrichment**: If the user supplies CSV/XLSX keyword files, extract relevant keyword candidates and metrics, merge them into the keyword pool, and filter out low-relevance terms
 - **Core selling point integration**: If the user provides core selling points, convert them into compliant differentiators and weave them into title, bullets, description, Item Highlights, and recommendations where relevant
 - **Chinese explanatory output**: Keep all explanatory, diagnostic, audit, strategy, and recommendation text in Chinese while preserving marketplace-language listing copy
-- **July 2026 compact title options**: After listing generation or audit/rewrite, add 3 sets of mobile-friendly Title + Item Highlights combinations without replacing the original listing output
+- **July 2026 ranked title options**: After listing generation or audit/rewrite, add 3 scored Title + Item Highlights combinations; keep the legacy title as a compatibility reference and mark Option 1 as the current recommended upload pair
 - **Full Excel report export**: Write the complete listing output, July 2026 options, audit report, keyword analysis, before/after changes, selling point notes, and recommendations into a user-downloadable `.xlsx` file for both Mode A and Mode B
 - **Multi-marketplace**: US, UK, DE, FR, IT, ES, JP, CA, AU, IN, MX, BR
+
+## External Web Data Retrieval Priority
+
+Apply this priority only when the task requires information from an external webpage, such as an Amazon product page, competitor listing, Seller Central help page, Amazon announcement, or public research page. It does not change any listing-generation, keyword, audit, scoring, or Excel logic.
+
+1. **Use Chrome first** when the `Chrome` plugin and `Chrome:control-chrome` skill are available. Read and follow that skill, reuse the user's existing Chrome session where appropriate, open the target page, and extract only information visibly supported by the page.
+2. Treat Chrome retrieval as successful only when the intended page and the fields needed for the task are available and attributable to the correct URL, marketplace, and product.
+3. If Chrome is unavailable, cannot connect, cannot load the target page, or returns incomplete target data after a reasonable attempt, fall back to the existing method for that workflow: bundled script, purpose-built connector/API/CLI, `web_fetch`, or `web_search` as applicable.
+4. Follow the Chrome skill's authentication policy. If it requires the user to sign in or approve switching away from explicitly requested Chrome, ask the user instead of bypassing authentication through another source.
+5. Never infer missing webpage fields. Mark unavailable data explicitly and continue only with verified user data or verified fallback-source data.
 
 ## Usage Examples
 
@@ -141,8 +150,8 @@ When core selling points are provided:
    - Do not invent proof, test results, certificates, review claims, or guarantees.
 3. Map selling points into the existing listing structure without changing the core workflow:
    - Title: use only the strongest 1 differentiator if it fits naturally and does not crowd the primary keyword.
-   - July 2026 Title: use 1-2 most important differentiators only when the 75-character limit still passes.
-   - Item Highlights: use compact secondary differentiators, material/spec/use-case modifiers, or scenario terms.
+   - July 2026 Title: use at most 1 evidence-backed differentiator only when the 75-character limit still passes and the core product remains clear.
+   - Item Highlights: use compact, complementary material/spec/use-case modifiers or scenario terms; do not restate title information.
    - Bullets: assign one core selling point per bullet where possible, pairing the benefit with a relevant keyword.
    - Description: expand the strongest benefits into shopper-friendly problem-solution language.
    - Backend search terms: never place unsupported claims or misleading selling points there.
@@ -157,12 +166,12 @@ When core selling points are provided:
 Keywords can come from five sources (use one or combine multiple):
 
 1. **From [amazon-keyword-research](https://github.com/nexscope-ai/Amazon-Skills/tree/main/amazon-keyword-research) skill** (recommended): Run keyword research first, then feed results directly. Install: `npx skills add nexscope-ai/Amazon-Skills --skill amazon-keyword-research -g`
-2. **From competitor ASINs**: User provides 1-3 competitor ASINs → run `<skill>/scripts/fetch-listing.sh` on each → extract keywords from their titles, bullets, and descriptions → use as your keyword baseline. This is the fastest way to start — you inherit what's already working for competitors, then add more.
+2. **From competitor ASINs**: User provides 1-3 competitor ASINs → use Chrome first to open each marketplace product page → if Chrome does not return complete target data, run `<skill>/scripts/fetch-listing.sh` on that ASIN → extract keywords from verified titles, bullets, and descriptions → use as your keyword baseline.
 3. **From user's keyword list**: User pastes their own keyword list (e.g. from Helium 10 Cerebro, Jungle Scout, or manual research)
 4. **From uploaded keyword files**: User provides one or more CSV/XLSX files → run the optional uploaded keyword file workflow → merge relevant terms into the keyword pool
-5. **Auto-discover**: Use `web_search` to find top keywords for the product category
+5. **Auto-discover**: Use Chrome first to inspect current Amazon search/category pages or relevant public webpages; if Chrome retrieval fails or is incomplete, use `web_search` to find product-category terms.
 
-When competitor ASINs are provided, always fetch and analyze them first. Extract every meaningful keyword from their titles and bullets, then merge with any user-provided keywords. The goal: cover everything competitors cover, plus keywords they missed.
+When competitor ASINs are provided, always fetch and analyze them first using the external web data retrieval priority above. Extract every meaningful keyword from verified titles and bullets, then merge with any user-provided keywords. The goal: cover everything competitors cover, plus relevant keywords they missed.
 
 When keyword files are provided in Mode A, process them before prioritization. Use them to enrich keyword coverage, not to replace the product facts or to force unrelated keywords into the listing.
 
@@ -279,7 +288,9 @@ Uncovered → recommend for Backend Search Terms
 
 ### Step B1: Fetch Listing Data
 
-Run the bundled script:
+Use Chrome first to open the product URL for the requested Amazon marketplace and extract the visible listing data. Confirm that the loaded page matches the requested ASIN and marketplace.
+
+If Chrome is unavailable or does not return complete target data, run the bundled script:
 
 ```bash
 <skill>/scripts/fetch-listing.sh "<ASIN>" [marketplace]
@@ -291,14 +302,14 @@ Run the bundled script:
 
 **Extracts:** Title, brand, price, bullet points, description, image count, A+ content presence, rating, review count, BSR, categories, date first available.
 
-If script returns incomplete data, fall back to `web_fetch` on the product URL.
+If the script also returns incomplete data, fall back to `web_fetch` on the product URL. Do not invent fields that remain unavailable.
 
 ### Step B2: Discover Target Keywords
 
 If user provides keywords, use those. If user provides CSV/XLSX keyword files, process those files and merge relevant terms into the target keyword pool. Otherwise, auto-discover:
 
 1. Extract apparent keywords from current title and bullets
-2. Run `web_search` for `site:amazon.com "[product type]"` to find competitors
+2. Use Chrome first to inspect current Amazon search/category results for the target marketplace; if Chrome retrieval fails or is incomplete, run `web_search` for `site:amazon.com "[product type]"` to find competitors
 3. Extract keywords from top 3 competitor titles and bullets
 4. (Optional) Chain with `amazon-keyword-research` skill for deeper analysis
 5. Add relevant terms extracted from uploaded keyword CSV/XLSX files, if provided
@@ -360,21 +371,92 @@ Run these steps after the standard Mode A listing generation or Mode B listing o
 
 ### Step C1: Add July 2026 Title + Item Highlights Options
 
-After the standard listing output is complete, add a separate July 2026 Title + Item Highlights options section. This is an additional output only; do not remove or replace the existing title, bullet points, description, backend search terms, keyword coverage report, or audit report.
+After the standard listing output is complete, add a separate July 2026 Title + Item Highlights section. Preserve the existing listing title and its 200-character workflow unchanged for compatibility, but label it `旧版兼容参考标题，不作为2026新规首选上架标题`. Treat Option 1 below as the current recommended upload pair.
 
-Generate **3 different combinations**. Each combination must include:
-- **Title**: 75 characters or fewer, including spaces. Formula: `[Brand] + [absolute core keyword/category] + [1-2 most important differentiating attributes or model terms]`.
-- **Item Highlights**: 125 characters or fewer, including spaces. Use this field for secondary keywords and modifiers such as material, specification, use case, pack count, compatibility, or audience.
-- **Core Strategy Brief**: Explain why this keyword and attribute combination was chosen.
+Before generating these options, read:
+- `references/amazon-title-policy-2026.md` for enforceable title and Item Highlights rules.
+- `references/search-ai-evidence.md` for the evidence boundaries around Amazon SEO/A9, COSMO, and Rufus/Alexa for Shopping.
 
-Rules:
-- Count visible characters exactly, including spaces. Do not count Markdown labels, brackets, or the parenthetical character count.
-- If any Title exceeds 75 characters or any Item Highlights exceeds 125 characters, rewrite it until it passes.
-- Use natural, concise language. Avoid keyword stuffing and repeated terms.
-- Make sure the Title can communicate the core product on mobile without relying on the Item Highlights.
-- Make the Item Highlights searchable and complementary; it should extend the Title instead of repeating it.
-- If user-provided core selling points exist, use them as differentiator candidates, but only include the highest-impact compliant points that fit the 75/125-character limits.
-- Output language still follows the target marketplace language rule.
+Generate **3 candidates**, validate them, score them, then sort them by actual score. Renumber the sorted candidates so the highest score is always Option 1:
+- **Option 1 — Balanced recommended**: Prioritize natural language, core identity, factual attributes, and cross-field complementarity.
+- **Option 2 — Keyword coverage**: Use only relevant keywords supported by user data, Amazon data, or product evidence.
+- **Option 3 — Intent answerability**: Strengthen factual use cases and attributes that help answer shopper questions without inventing claims.
+
+Build each pair by deciding what shoppers need to know first, then allocate the verified facts between fields. Do not mechanically split the legacy title or use one rigid attribute order.
+
+Apply this sequence:
+
+1. Build a fact pool from user materials, verified listing data, and supported keyword data. Never add an unsupported attribute.
+2. Answer "what is it?" with the brand and a natural, precise core product phrase in the Title.
+3. Evaluate hard fit information such as dimensions, capacity, model, or compatibility.
+4. Identify any category-specific first-screen decision factor such as mounting method, connector, compatible device, or operating format.
+5. Evaluate the strongest differentiator and compact, evidence-backed attributes such as material, color, or washability.
+6. Select Title facts by shopper decision value, keyword evidence, differentiation, character cost, and marketplace-language naturalness.
+7. Move quantified detail, secondary structure/function, care, audience, use case, and lower-priority terms to Item Highlights.
+8. Confirm that the fields form a useful summary-and-detail pair rather than a mechanical split or duplicate.
+
+Use this adaptive Title pattern as a decision guide, not a fixed word order:
+
+`[Brand] + [core product phrase] + [hard fit/specification] + [category-specific decision factor] + [high-value compact attribute]`
+
+- Keep the Title at 75 visible characters or fewer, including spaces.
+- Make the Title identify the product without relying on Item Highlights.
+- Order facts naturally for the target marketplace; never produce a keyword collage.
+- Include color and size/specification for child ASINs; omit specific color and size from parent ASINs.
+- Do not force every slot into the Title. Stop when the next fact would reduce clarity, crowd out product identity, or exceed the limit.
+- When candidates are otherwise equal, prefer the shorter natural Title and retain practical character headroom. Do not describe headroom as an Amazon policy requirement.
+- Treat "information value per character" only as an internal selection heuristic, never an Amazon ranking formula.
+
+Build Item Highlights from the most useful verified facts left after Title selection. Prioritize, as applicable:
+
+`[quantified refinement], [secondary structure/function], [performance or safety specification], [care or sensory detail], [audience or use case]`
+
+- Keep Item Highlights at 125 visible characters or fewer, including spaces.
+- Use comma-separated phrases, not complete sentences.
+- Never put `|` into either Seller Central field; use it only as a report delimiter when explicitly needed.
+- Let the same attribute appear in either field according to decision value, keyword evidence, character cost, and available space. Material or care information is not permanently assigned to one field.
+- Prefer a specific term over a generic synonym. For example, keep `Kunstkaninchenfell` and remove semantically redundant `Kunstfell`.
+- Use secondary category synonyms only when user data or Amazon data supports their relevance and they add useful coverage.
+- Prefer objective wording such as `für Fensterbänke`; do not add unsupported wording such as `ideal`, `beste`, `#1`, or `Bestseller`.
+
+Allow controlled cross-field refinement when the Title names a category-critical attribute and Item Highlights add concrete, supported detail needed to explain it:
+
+- Allowed: `Ventose` → `4 ventose potenti` because Item Highlights add the verified count and complete the installation detail.
+- Allowed: `Saugnäpfe` → `4 starke Saugnäpfe bis 18 kg` when the count and load claim are verified.
+- Rewrite: `waschbar` → `waschbar` because it adds no information.
+- Rewrite: `Kunstfell` + `Kunstkaninchenfell` because the generic and specific terms waste semantic space; retain the specific term.
+- An adjective alone is not sufficient refinement. Require a supported count, measurement, specification, structure, compatibility, use, or other concrete fact.
+- Cross-field reuse does not count toward the Title's within-field repeated-word check. Continue checking the Title itself independently.
+- Record every retained controlled refinement in `deduplication_notes` in Chinese and state exactly what the second field adds.
+
+Use these positive benchmarks to learn the allocation logic without copying their product facts into unrelated listings:
+
+- Italian window cat hammock: Title keeps `52x30cm`, `Ventose`, `Coniglio`, and `Bianco`; Item Highlights expand the mounting method to `4 ventose potenti` and carry folding, load, softness, and care details.
+- German dog bed: Title keeps `M 63x53x18cm`, `waschbar`, `Kunstkaninchenfell`, and `weiß`; Item Highlights carry dog-size suitability, shape, texture, anti-slip, care, and comfort details.
+- German cat window bed: retain `Kunstkaninchenfell` and remove the redundant generic term `Kunstfell`.
+
+Validate every candidate with:
+
+```bash
+<skill>/scripts/validate-title-highlights.py --title "<title>" --item-highlights "<item-highlights>" --marketplace "<marketplace>"
+```
+
+Rewrite any candidate with hard errors before scoring. Treat warnings as review prompts and resolve material repetition or wording issues before finalizing.
+
+Score each passing candidate with this internal review rubric:
+- `fact_accuracy_and_answerability`: /25 — Product facts are accurate and directly answerable by Rufus/Alexa-style shopper questions.
+- `natural_search_relevance`: /25 — Primary terms are relevant, evidence-backed, and naturally expressed; do not invent A9 weights.
+- `mobile_clarity`: /20 — The Title is clear, concise, grammatical, and independently understandable.
+- `field_complementarity`: /15 — Item Highlights add useful information; verified controlled refinement does not lose points, while exact or semantic waste must be rewritten.
+- `intent_and_use_case`: /15 — COSMO-style intent and use-case coverage is useful but remains factual.
+
+The total is a **skill internal review score**, never an Amazon official algorithm score. Use A9 only as industry shorthand for traditional lexical SEO, COSMO only for public semantic-intent principles, and Rufus/Alexa only for factual answerability. Amazon has not published field weights for these systems. Break ties by less unproductive repetition, then more natural language, then shorter Title length.
+
+Each final option must include these backward-compatible and additive fields:
+- Existing: `option`, `title`, `title_characters`, `item_highlights`, `item_highlights_characters`, `core_strategy`.
+- Additive: `rank`, `status`, `score`, `score_breakdown`, `deduplication_notes`. Use `deduplication_notes` for both removed redundancy and retained summary-to-detail refinement.
+
+Set Option 1 `status` to `recommended_for_current_upload`; set Options 2-3 to `alternate`. Keep all listing copy in the target marketplace language and all strategy explanations in Chinese.
 
 ### Step C2: Export Complete Listing Optimization Report to Excel
 
@@ -385,8 +467,8 @@ At the end of either Mode A or Mode B, create a visually friendly Excel file con
 ```
 
 The Excel file must include every major section shown in the chat response:
-- Final ready-to-use listing: title, bullet points, description, backend search terms.
-- July 2026 Title + Item Highlights options, placed in the same `Listing` sheet after the standard listing fields, using the same two-column layout (`模块` / `内容`).
+- Final ready-to-use listing: legacy compatibility-reference title, bullet points, description, backend search terms.
+- July 2026 Title + Item Highlights options, placed in the same `Listing` sheet after the standard listing fields, using the same two-column layout (`模块` / `内容`), with Option 1 clearly marked as the current recommended upload pair.
 - Mode A diagnostic data or Mode B audit report, depending on task mode.
 - Keyword coverage, priority breakdown, and keyword gap analysis when available.
 - Before/after changes for Mode B.
@@ -414,11 +496,22 @@ Create the JSON input during the task with this structure. Include empty arrays/
   "title_options_2026": [
     {
       "option": 1,
+      "rank": 1,
+      "status": "recommended_for_current_upload",
       "title": "Brand Core Keyword Attribute",
       "title_characters": 28,
       "item_highlights": "Searchable secondary keywords and specs",
       "item_highlights_characters": 40,
-      "core_strategy": "Why this combination was chosen"
+      "core_strategy": "Why this combination was chosen",
+      "score": 94,
+      "score_breakdown": {
+        "fact_accuracy_and_answerability": 24,
+        "natural_search_relevance": 23,
+        "mobile_clarity": 19,
+        "field_complementarity": 14,
+        "intent_and_use_case": 14
+      },
+      "deduplication_notes": ["删除泛化材质词；保留标题概括、亮点量化的受控复现"]
     }
   ],
   "diagnostic": {
@@ -468,6 +561,7 @@ Workbook requirements:
 - Do not create a separate `2026标题方案` sheet. Merge the 2026 Title + Item Highlights options into the `Listing` sheet and keep the original `Listing` sheet layout style.
 - Keep sheet names Chinese and under Excel's 31-character limit.
 - The Excel content must mirror the response content. Do not export only the short title + highlights options.
+- Label `listing.title` as `旧版兼容参考标题` and include the note `旧版兼容参考标题，不作为2026新规首选上架标题`; do not change how that legacy title is generated.
 - If any section is unavailable, keep the sheet with a clear Chinese note such as `本次任务未提供该部分数据`.
 
 文件名需要清晰，例如：`listing-optimization-report-<ASIN-or-product>-2026.xlsx`。创建完成后，在回复中提供文件路径。
@@ -483,8 +577,10 @@ Workbook requirements:
 ```
 # ✅ 可直接使用的Listing
 
-## 标题
-[标题文本，可直接复制到 Seller Central]
+## 标题（旧版兼容参考）
+[旧版兼容标题文本，仅供参考]
+
+> 旧版兼容参考标题，不作为2026新规首选上架标题。现行上架优先使用下方方案1的商品标题和商品亮点。
 
 ## 五点描述
 1. [利益点标题] — [包含关键词的文案]
@@ -502,18 +598,33 @@ Workbook requirements:
 ## 2026年7月标题 + 商品亮点方案
 
 ### 方案 1
+【排名】1
+【状态】现行推荐上架方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ### 方案 2
+【排名】2
+【状态】备选方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ### 方案 3
+【排名】3
+【状态】备选方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ---
@@ -550,8 +661,10 @@ Workbook requirements:
 ```
 # ✅ 优化后Listing
 
-## 标题
-[优化后标题，可直接复制到 Seller Central]
+## 标题（旧版兼容参考）
+[优化后的旧版兼容标题文本，仅供参考]
+
+> 旧版兼容参考标题，不作为2026新规首选上架标题。现行上架优先使用下方方案1的商品标题和商品亮点。
 
 ## 五点描述
 1. [利益点标题] — [优化后文案]
@@ -569,18 +682,33 @@ Workbook requirements:
 ## 2026年7月标题 + 商品亮点方案
 
 ### 方案 1
+【排名】1
+【状态】现行推荐上架方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ### 方案 2
+【排名】2
+【状态】备选方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ### 方案 3
+【排名】3
+【状态】备选方案
 【商品标题】[title]（[精准字符数] 字符）
 【商品亮点】[item highlights]（[精准字符数] 字符）
+【技能内部选优分】[score]/100（不是Amazon官方算法分）
+【分项评分】[score breakdown]
+【跨字段互补与去重说明】[deduplication notes]
 【核心策略简析】[中文策略说明]
 
 ---
@@ -664,7 +792,7 @@ Workbook requirements:
 
 3. **Explanatory text must be Chinese.** All section headings, diagnostic notes, audit explanations, strategy briefs, issue summaries, recommendations, keyword analysis explanations, core selling point integration notes, and Excel/file delivery notes in the response must be written in Chinese. This requirement does not translate the actual marketplace listing copy unless the target marketplace language is Chinese or the user explicitly asks for Chinese copy.
 
-4. **Preserve the original workflow.** The July 2026 Title + Item Highlights section is a supplemental output. It must appear after the ready-to-use listing and before or within the diagnostic/audit support section, but it must not replace the standard Title/Bullets/Description deliverable.
+4. **Preserve the original workflow.** Keep the legacy 200-character Title/Bullets/Description workflow for compatibility and label its Title as reference-only. The July 2026 Title + Item Highlights section remains in the same output position, but Option 1 is the current recommended upload pair. Do not alter the legacy title-generation formula or any non-title workflow.
 
 5. **Excel export is required for Mode A and Mode B full report delivery.** Whenever a listing is generated or optimized, also generate the `.xlsx` file unless the runtime cannot write files. The workbook must include the complete final listing output and all available diagnostic/audit sections, not only the July 2026 title options. If file creation fails, explain the failure and still show all required sections in the response.
 
@@ -689,6 +817,8 @@ Step 2: "Now create a listing using those keywords. Product: 380ml BPA-free blen
 ## Limitations
 
 This skill uses publicly available data from Amazon product pages. It cannot access backend search terms, exact search volumes, or PPC/conversion data. For deeper analytics, check out **[Nexscope](https://www.nexscope.ai/?co-from=skill)** — Your AI Assistant for smarter E-commerce decisions.
+
+Amazon does not publish ranking-factor weights for A9, COSMO, or Rufus/Alexa for Shopping. Never present the internal Title + Item Highlights review rubric as Amazon's official score or promise a ranking outcome.
 
 ---
 
