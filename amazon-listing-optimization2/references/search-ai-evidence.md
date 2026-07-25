@@ -66,14 +66,24 @@ This method combines the public evidence boundaries above with the July 2026 fie
 For each verified fact, evaluate:
 
 1. **Product identity**: Does it answer what the product is? Brand and the natural core product phrase belong in the Title.
-2. **Fit and compatibility**: Does it decide whether the product fits or works, such as dimensions, capacity, model, or compatible device?
-3. **Category-specific first-screen decision**: Does the category make installation method, connector, operating format, or another attribute an early shopper check?
-4. **Differentiation**: Does the fact distinguish this product from close alternatives without an unsupported claim?
+2. **Differentiation**: Does the verified fact distinguish this product from ordinary alternatives without an unsupported claim? Select the strongest compliant differentiator and place it immediately after or naturally integrate it with the core product phrase in every candidate.
+3. **Fit and compatibility**: After the differentiator, does another fact decide whether the product fits or works, such as dimensions, capacity, model, or compatible device?
+4. **Category-specific first-screen detail**: Does the category make another installation, connector, operating-format, or use detail important after the selected differentiator?
 5. **Keyword evidence**: Is the wording supported by user data, Amazon first-party data, or directly observed relevant listings?
 6. **Character efficiency**: How much verified decision information does the phrase add for its character cost?
 7. **Language quality**: Does the complete Title remain natural and independently understandable in the marketplace language?
 
-Use the answers to allocate facts rather than permanently assigning attribute types to fields. A compact care term may earn a place in one product's Title but move to Item Highlights in another product when the fuller care phrase is more useful there. A high-importance load specification may also move to Item Highlights when its character cost would crowd out identity, fit, or a category-critical cue.
+Use this internal priority order for July 2026 candidates:
+
+`brand → core product phrase → strongest verified differentiator → necessary child size/color → remaining specification`
+
+The strongest differentiator is a generation gate, not an extra scoring bonus. When reliable evidence supports one, every candidate must include it before size/color or be rewritten before scoring. Color, size, ordinary category attributes, and broad wording such as soft, comfortable, high quality, or premium do not qualify by themselves.
+
+Extract differentiator candidates first from user-provided product facts and selling points, then from the verified current listing or other verified product evidence. Competitor wording and keyword data may support prioritization but may not create an unsupported product claim. Rank multiple candidates by evidence reliability, category purchase-decision value, degree of differentiation, keyword evidence, character cost, and language naturalness.
+
+If no compliant differentiator can be extracted from any reliable source, omit it rather than inventing one and state `未提取到可验证差异化卖点` in the Chinese strategy explanation. This does not permit invented or redundant Item Highlights: if no additional verified fact remains after the existing evidence-gathering workflow, report `资料不足，无法生成可上架的商品亮点`, do not score the incomplete pair, and do not mark it upload-ready. If identity, the strongest differentiator, and necessary child variation identifiers still cannot fit within 75 characters after concise rewriting, flag the conflict and do not mark the candidate upload-ready.
+
+After satisfying this gate, allocate remaining facts contextually rather than permanently assigning attribute types to fields. A compact care term may earn a place in one product's Title but move to Item Highlights in another product when the fuller care phrase is more useful there. A high-importance load specification may also move to Item Highlights when its character cost would crowd out identity, the differentiator, or necessary child variation identifiers.
 
 ### Controlled cross-field refinement
 
