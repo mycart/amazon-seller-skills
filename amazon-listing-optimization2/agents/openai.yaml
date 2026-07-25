@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing Optimization 2"
+  short_description: "Amazon Listing优化与2026标题亮点生成"
+  default_prompt: "使用 $amazon-listing-optimization2，基于商品事实和关键词生成或优化 Amazon Listing，并提供符合2026新规的排序标题与商品亮点方案。"

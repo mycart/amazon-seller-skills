@@ -143,6 +143,17 @@ def rows_from_dicts(title: str, rows: list[dict], headers: list[tuple[str, str]]
     return normalize_rows(output)
 
 
+def title_option_sort_key(option: dict) -> tuple[int, int]:
+    def numeric(value: object, fallback: int) -> int:
+        try:
+            return int(value)
+        except (TypeError, ValueError):
+            return fallback
+
+    option_number = numeric(option.get("option"), 999)
+    return numeric(option.get("rank"), option_number), option_number
+
+
 def build_sheets(data: dict) -> list[tuple[str, list[list[object]], list[int]]]:
     listing = data.get("listing", {}) or {}
     audit = data.get("audit", {}) or {}
@@ -166,7 +177,8 @@ def build_sheets(data: dict) -> list[tuple[str, list[list[object]], list[int]]]:
     ]
 
     listing_rows = [["最终Listing"], ["模块", "内容"]]
-    listing_rows.append(["标题", listing.get("title", "")])
+    listing_rows.append(["旧版兼容参考标题", listing.get("title", "")])
+    listing_rows.append(["旧版标题说明", "旧版兼容参考标题，不作为2026新规首选上架标题"])
     for index, bullet in enumerate(listing.get("bullets", []) or [], start=1):
         listing_rows.append([f"五点{index}", bullet])
     listing_rows.extend(
@@ -178,18 +190,23 @@ def build_sheets(data: dict) -> list[tuple[str, list[list[object]], list[int]]]:
     title_options = data.get("title_options_2026", []) or data.get("options", []) or []
     if title_options:
         listing_rows.append([])
-        listing_rows.append(["2026年7月标题 + 商品亮点方案", ""])
-        for option in title_options:
-            label = f"方案{option.get('option', '')}".strip()
-            listing_rows.extend(
-                [
-                    [f"{label} 商品标题", option.get("title", "")],
-                    [f"{label} 标题字符数", option.get("title_characters", "")],
-                    [f"{label} 商品亮点", option.get("item_highlights", "")],
-                    [f"{label} 亮点字符数", option.get("item_highlights_characters", "")],
-                    [f"{label} 核心策略简析", option.get("core_strategy", "")],
-                ]
-            )
+        listing_rows.append(["2026年7月标题 + 商品亮点方案", "方案1为现行推荐上架方案；方案2-3为备选"])
+        for option in sorted(title_options, key=title_option_sort_key):
+            display_number = option.get("rank") or option.get("option", "")
+            label = f"方案{display_number}".strip()
+            option_rows = [
+                [f"{label} 排名", option.get("rank", "")],
+                [f"{label} 状态", option.get("status", "")],
+                [f"{label} 商品标题", option.get("title", "")],
+                [f"{label} 标题字符数", option.get("title_characters", "")],
+                [f"{label} 商品亮点", option.get("item_highlights", "")],
+                [f"{label} 亮点字符数", option.get("item_highlights_characters", "")],
+                [f"{label} 技能内部选优分", option.get("score", "")],
+                [f"{label} 分项评分", option.get("score_breakdown", "")],
+                [f"{label} 跨字段互补与去重说明", option.get("deduplication_notes", "")],
+                [f"{label} 核心策略简析", option.get("core_strategy", "")],
+            ]
+            listing_rows.extend(row for row in option_rows if as_text(row[1]))
     sheets.append(("Listing", normalize_rows(listing_rows), [18, 100]))
 
     audit_rows = [["审核报告"], ["字段", "内容"]]
