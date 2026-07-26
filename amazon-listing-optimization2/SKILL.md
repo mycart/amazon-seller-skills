@@ -1,6 +1,6 @@
 ---
 name: amazon-listing-optimization2
-description: "Create and optimize Amazon listings in 12 marketplaces using product facts, keywords, competitor listings, optional CSV/XLSX keyword files, and seller-provided core selling points. Supports new-listing creation, existing-listing audits, keyword coverage and gap analysis, 8-dimension scoring, listing rewrites, competitive comparison, Chinese diagnostics, full Excel report export, and three ranked July 2026 Title + Item Highlights options. Preserve the legacy 200-character title workflow as a compatibility reference while generating a recommended 75-character Title and 125-character Item Highlights pair under Amazon's 2026 rules. Use for Amazon listing creation, optimization, SEO coverage, relaunch preparation, title/highlights generation, and report export."
+description: "Create and optimize Amazon listings in 13 marketplaces using product facts, keywords, competitor listings, optional CSV/XLSX keyword files, and seller-provided core selling points. Supports new-listing creation, existing-listing audits, keyword coverage and gap analysis, 8-dimension scoring, listing rewrites, competitive comparison, Chinese diagnostics, full Excel report export, and three ranked July 2026 Title + Item Highlights options. Preserve the legacy 200-character title workflow as a compatibility reference while generating a recommended 75-character Title and 125-character Item Highlights pair under Amazon's 2026 rules. Use for Amazon listing creation, optimization, SEO coverage, relaunch preparation, title/highlights generation, and report export."
 ---
 
 # Amazon Listing Optimization 2 📝
@@ -42,7 +42,7 @@ npx skills add nexscope-ai/Amazon-Skills --skill amazon-listing-optimization -g
 - **Chinese explanatory output**: Keep all explanatory, diagnostic, audit, strategy, and recommendation text in Chinese while preserving marketplace-language listing copy
 - **July 2026 ranked title options**: After listing generation or audit/rewrite, add 3 scored Title + Item Highlights combinations; keep the legacy title as a compatibility reference and mark Option 1 as the current recommended upload pair
 - **Full Excel report export**: Write the complete listing output, July 2026 options, audit report, keyword analysis, before/after changes, selling point notes, and recommendations into a user-downloadable `.xlsx` file for both Mode A and Mode B
-- **Multi-marketplace**: US, UK, DE, FR, IT, ES, JP, CA, AU, IN, MX, BR
+- **Multi-marketplace**: US, UK, DE, FR, IT, ES, JP, CA, AU, IN, MX, BR, IE
 
 ## External Web Data Retrieval Priority
 
@@ -150,8 +150,8 @@ When core selling points are provided:
    - Do not invent proof, test results, certificates, review claims, or guarantees.
 3. Map selling points into the existing listing structure without changing the core workflow:
    - Title: use only the strongest 1 differentiator if it fits naturally and does not crowd the primary keyword.
-   - July 2026 Title: use at most 1 evidence-backed differentiator only when the 75-character limit still passes and the core product remains clear.
-   - Item Highlights: use compact, complementary material/spec/use-case modifiers or scenario terms; do not restate title information.
+   - July 2026 Title: if a compliant differentiator can be extracted, include the strongest one in all 3 candidates immediately after or naturally integrated with the core product phrase, ahead of child size and color. Omit it only when no verified differentiator can be extracted.
+   - Item Highlights: use compact, complementary material/spec/use-case modifiers or scenario terms; allow only the controlled quantified refinement defined in Step C1.
    - Bullets: assign one core selling point per bullet where possible, pairing the benefit with a relevant keyword.
    - Description: expand the strongest benefits into shopper-friendly problem-solution language.
    - Backend search terms: never place unsupported claims or misleading selling points there.
@@ -298,7 +298,7 @@ If Chrome is unavailable or does not return complete target data, run the bundle
 
 **Parameters:**
 - `ASIN` (required): e.g. B09V3KXJPB
-- `marketplace` (optional): `us` (default), `uk`, `de`, `fr`, `it`, `es`, `jp`, `ca`, `au`, `in`, `mx`, `br`
+- `marketplace` (optional): `us` (default), `uk`, `de`, `fr`, `it`, `es`, `jp`, `ca`, `au`, `in`, `mx`, `br`, `ie`
 
 **Extracts:** Title, brand, price, bullet points, description, image count, A+ content presence, rating, review count, BSR, categories, date first available.
 
@@ -377,7 +377,7 @@ Before generating these options, read:
 - `references/amazon-title-policy-2026.md` for enforceable title and Item Highlights rules.
 - `references/search-ai-evidence.md` for the evidence boundaries around Amazon SEO/A9, COSMO, and Rufus/Alexa for Shopping.
 
-Generate **3 candidates**, validate them, score them, then sort them by actual score. Renumber the sorted candidates so the highest score is always Option 1:
+Generate **3 candidates**, validate them, score them, then sort them by actual score, except for the explicit insufficient-facts branch below. Renumber the sorted candidates so the highest score is always Option 1:
 - **Option 1 — Balanced recommended**: Prioritize natural language, core identity, factual attributes, and cross-field complementarity.
 - **Option 2 — Keyword coverage**: Use only relevant keywords supported by user data, Amazon data, or product evidence.
 - **Option 3 — Intent answerability**: Strengthen factual use cases and attributes that help answer shopper questions without inventing claims.
@@ -388,22 +388,30 @@ Apply this sequence:
 
 1. Build a fact pool from user materials, verified listing data, and supported keyword data. Never add an unsupported attribute.
 2. Answer "what is it?" with the brand and a natural, precise core product phrase in the Title.
-3. Evaluate hard fit information such as dimensions, capacity, model, or compatibility.
-4. Identify any category-specific first-screen decision factor such as mounting method, connector, compatible device, or operating format.
-5. Evaluate the strongest differentiator and compact, evidence-backed attributes such as material, color, or washability.
-6. Select Title facts by shopper decision value, keyword evidence, differentiation, character cost, and marketplace-language naturalness.
-7. Move quantified detail, secondary structure/function, care, audience, use case, and lower-priority terms to Item Highlights.
+3. Extract differentiator candidates from verified product facts. A differentiator must be factual, product-specific, and capable of distinguishing the product from ordinary alternatives, such as mounting method, specific material, structural mechanism, connector capability, compatibility, quantified performance, or a distinctive included component.
+4. Select the strongest differentiator by evidence reliability, category purchase-decision value, degree of differentiation, keyword evidence, character cost, and marketplace-language naturalness.
+5. Put the strongest verified differentiator immediately after the core product phrase, or integrate it naturally into that phrase, before child size and color. Apply this requirement to all 3 candidates.
+6. After the differentiator, evaluate child variation identifiers and other hard-fit information such as dimensions, capacity, model, or compatibility.
+7. Move quantified expansion, secondary structure/function, care, audience, use case, and lower-priority facts to Item Highlights.
 8. Confirm that the fields form a useful summary-and-detail pair rather than a mechanical split or duplicate.
+
+Do not classify color, size, ordinary category attributes, or broad wording such as soft, comfortable, high quality, or premium as a differentiator by themselves. Competitor wording and keyword data may help prioritize a verified product fact, but they may not create a differentiator that the product evidence does not support.
 
 Use this adaptive Title pattern as a decision guide, not a fixed word order:
 
-`[Brand] + [core product phrase] + [hard fit/specification] + [category-specific decision factor] + [high-value compact attribute]`
+`[Brand] + [core product phrase] + [strongest verified differentiator] + [child size/color] + [remaining specification]`
 
 - Keep the Title at 75 visible characters or fewer, including spaces.
 - Make the Title identify the product without relying on Item Highlights.
 - Order facts naturally for the target marketplace; never produce a keyword collage.
-- Include color and size/specification for child ASINs; omit specific color and size from parent ASINs.
+- When a verified differentiator exists, every candidate must include it immediately after or naturally integrated with the core product phrase. A candidate that omits it or places child size/color before it must be rewritten before validation and scoring.
+- If two verified differentiators are complementary and both fit naturally, place both before child size/color; only the strongest differentiator is mandatory.
+- Include necessary color and size identifiers for child ASINs after the differentiator; omit specific color and size from parent ASINs.
+- If no verified differentiator can be extracted from any reliable source, omit it rather than inventing one and write `未提取到可验证差异化卖点` in the Chinese `core_strategy` explanation.
+- The absence of a differentiator does not permit invented or redundant Item Highlights. If all verified facts are already consumed by product identity and required child variation attributes, continue the existing evidence-gathering workflow. If no additional verified fact remains, report `资料不足，无法生成可上架的商品亮点` in Chinese and stop before candidate validation and scoring. Keep the existing `title_options_2026` interface as an empty array for this exception; do not create placeholder options, scores, or upload-ready statuses.
 - Do not force every slot into the Title. Stop when the next fact would reduce clarity, crowd out product identity, or exceed the limit.
+- When the Title approaches 75 characters, move secondary functions, use cases, care details, and ordinary specifications to Item Highlights before removing the strongest differentiator.
+- If brand, core product phrase, strongest differentiator, and necessary child variation identifiers still cannot fit after concise natural rewriting and compact unit formatting, flag the conflict and do not mark that candidate as ready for upload.
 - When candidates are otherwise equal, prefer the shorter natural Title and retain practical character headroom. Do not describe headroom as an Amazon policy requirement.
 - Treat "information value per character" only as an internal selection heuristic, never an Amazon ranking formula.
 
@@ -431,9 +439,11 @@ Allow controlled cross-field refinement when the Title names a category-critical
 
 Use these positive benchmarks to learn the allocation logic without copying their product facts into unrelated listings:
 
-- Italian window cat hammock: Title keeps `52x30cm`, `Ventose`, `Coniglio`, and `Bianco`; Item Highlights expand the mounting method to `4 ventose potenti` and carry folding, load, softness, and care details.
-- German dog bed: Title keeps `M 63x53x18cm`, `waschbar`, `Kunstkaninchenfell`, and `weiß`; Item Highlights carry dog-size suitability, shape, texture, anti-slip, care, and comfort details.
-- German cat window bed: retain `Kunstkaninchenfell` and remove the redundant generic term `Kunstfell`.
+- Italian window cat hammock: `CareCooo Amaca per Gatti da Finestra, Ventose, Coniglio, 52x30cm, Bianco` places the mounting and material differentiators before size and color; Item Highlights expand `Ventose` to `4 ventose potenti` and carry folding, load, softness, and care details.
+- German dog bed: `CareCooo Hundebett, Kunstkaninchenfell, waschbar, M 63x53x18cm, weiß` places the specific material differentiator before size and color; Item Highlights carry dog-size suitability, shape, texture, anti-slip, care, and comfort details.
+- German cat window bed: `CareCooo Fensterliege für Katzen, Saugnäpfe, M, Grau, 52x30x20cm` keeps a verified mounting differentiator before variation attributes; retain `Kunstkaninchenfell` elsewhere and remove the redundant generic term `Kunstfell`.
+
+Before scoring, enforce the differentiator gate: if reliable evidence supports a compliant differentiator but any candidate omits it or places size/color before it, rewrite that candidate. The existing 100-point rubric applies only after this gate and the 75/125-character policy checks pass.
 
 Validate every candidate with:
 
@@ -456,7 +466,9 @@ Each final option must include these backward-compatible and additive fields:
 - Existing: `option`, `title`, `title_characters`, `item_highlights`, `item_highlights_characters`, `core_strategy`.
 - Additive: `rank`, `status`, `score`, `score_breakdown`, `deduplication_notes`. Use `deduplication_notes` for both removed redundancy and retained summary-to-detail refinement.
 
-Set Option 1 `status` to `recommended_for_current_upload`; set Options 2-3 to `alternate`. Keep all listing copy in the target marketplace language and all strategy explanations in Chinese.
+For every candidate, write `core_strategy` in Chinese to name the selected strongest differentiator, state its verified selection basis, and confirm that it appears immediately after or is naturally integrated with the core product phrase before child size/color. If no compliant differentiator is available, use the required `未提取到可验证差异化卖点` statement instead. In `deduplication_notes`, explain in Chinese any quantified expansion of that differentiator in Item Highlights and what concrete information the second field adds; also record removed exact or semantic redundancy.
+
+For complete, passing candidates, set Option 1 `status` to `recommended_for_current_upload`; set Options 2-3 to `alternate`. Keep all listing copy in the target marketplace language and all strategy explanations in Chinese.
 
 ### Step C2: Export Complete Listing Optimization Report to Excel
 
@@ -788,7 +800,7 @@ Workbook requirements:
 
 1. The seller's workflow is: **copy the listing → paste into Seller Central → done.** The diagnostic section explains WHY those specific words were chosen, but the listing itself must stand alone as a complete, ready-to-use deliverable. Never output only a report without the actual listing copy.
 
-2. **Listing copy language must match the target marketplace.** Amazon US/UK/AU/CA/IN → English. Amazon DE → German. Amazon FR → French. Amazon JP → Japanese. Amazon ES/MX → Spanish. Amazon IT → Italian. Amazon BR → Portuguese. This applies to the actual listing copy fields: title, bullet points, description, backend search terms, July 2026 Title, and Item Highlights.
+2. **Listing copy language must match the target marketplace.** Amazon US/UK/IE/AU/CA/IN → English. Amazon DE → German. Amazon FR → French. Amazon JP → Japanese. Amazon ES/MX → Spanish. Amazon IT → Italian. Amazon BR → Portuguese. This applies to the actual listing copy fields: title, bullet points, description, backend search terms, July 2026 Title, and Item Highlights.
 
 3. **Explanatory text must be Chinese.** All section headings, diagnostic notes, audit explanations, strategy briefs, issue summaries, recommendations, keyword analysis explanations, core selling point integration notes, and Excel/file delivery notes in the response must be written in Chinese. This requirement does not translate the actual marketplace listing copy unless the target marketplace language is Chinese or the user explicitly asks for Chinese copy.
 

@@ -38,7 +38,7 @@ The policy limits and content prohibitions above are enforceable rules. The allo
 
 Adaptive Title guide:
 
-`[Brand] + [core product phrase] + [hard fit/specification] + [category-specific decision factor] + [high-value compact attribute]`
+`[Brand] + [core product phrase] + [strongest verified differentiator] + [child size/color] + [remaining specification]`
 
 Item Highlights guide:
 
@@ -46,6 +46,11 @@ Item Highlights guide:
 
 - Make the Title independently understandable on mobile.
 - Order Title facts naturally for the marketplace rather than forcing every guide slot into the field.
+- Treat the strongest verified differentiator as the highest internal allocation priority after product identity. Place it immediately after or naturally integrate it with the core product phrase, before child size and color.
+- Require the strongest differentiator in every candidate whenever reliable product evidence supports one. Omit it only when no compliant differentiator can be extracted; never invent one from competitor wording or search intent.
+- Do not treat color, size, ordinary category attributes, or broad quality adjectives as differentiators by themselves.
+- When no differentiator and no additional verified Item Highlights facts are available, report insufficient source facts rather than inventing or repeating content, and do not present the incomplete pair as upload-ready.
+- Keep necessary child variation identifiers after the differentiator. If the required identity, differentiator, and child identifiers cannot fit within 75 characters after concise rewriting, flag the conflict rather than presenting the pair as upload-ready.
 - Write Item Highlights as comma-separated phrases, not full sentences.
 - Use Item Highlights to add material, specification, use-case, compatibility, care, or quantified detail that the Title cannot efficiently carry.
 - Avoid unproductive repetition. A Title attribute may be repeated only when Item Highlights add a supported count, measurement, specification, structure, compatibility, or use detail required to explain it.
@@ -59,17 +64,17 @@ Amazon states that Item Highlights are searchable and appear below titles in sea
 
 Title:
 
-`CareCooo Fensterliege für Katzen, Grau, M, 52 x 30 x 20 cm`
+`CareCooo Fensterliege für Katzen, Saugnäpfe, M, Grau, 52x30x20cm`
 
 Item Highlights:
 
-`Kunstkaninchenfell, starke Saugnäpfe bis 18 kg, faltbares Design, waschbarer Bezug, für Fensterbänke`
+`Kunstkaninchenfell, 4 starke Saugnäpfe bis 18 kg, faltbares Design, waschbarer Bezug, für Fensterbänke`
 
 The pattern is reusable; the product facts are not. Do not copy this example's claims into other products.
 
 Two additional allocation examples:
 
-- `Ventose` in a window cat hammock Title may be refined to `4 ventose potenti` in Item Highlights when the count and mounting claim are verified. The Title gives the category-critical mounting cue; Item Highlights add concrete detail.
-- `waschbar` may remain in a compact dog-bed Title when it earns its character cost, while longer audience, shape, texture, anti-slip, and comfort information moves to Item Highlights.
+- `CareCooo Amaca per Gatti da Finestra, Ventose, Coniglio, 52x30cm, Bianco` puts verified mounting and material differentiation before size and color. Item Highlights may refine `Ventose` to `4 ventose potenti` when the count and mounting claim are verified.
+- `CareCooo Hundebett, Kunstkaninchenfell, waschbar, M 63x53x18cm, weiß` puts the specific material differentiator before size and color, while longer audience, shape, texture, anti-slip, and comfort information moves to Item Highlights.
 
 These examples are internal field-allocation guidance. They do not establish Amazon ranking weights or universal attribute priorities.

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Amazon Listing Fetcher — extracts listing data from an Amazon product page
 # Usage: fetch-listing.sh <ASIN> [marketplace]
-# Marketplaces: us (default), uk, de, fr, it, es, jp, ca, au, in, mx, br
+# Marketplaces: us (default), uk, de, fr, it, es, jp, ca, au, in, mx, br, ie
 
 set -uo pipefail
 
@@ -13,6 +13,7 @@ declare -A DOMAINS=(
   [fr]="www.amazon.fr" [it]="www.amazon.it" [es]="www.amazon.es"
   [jp]="www.amazon.co.jp" [ca]="www.amazon.ca" [au]="www.amazon.com.au"
   [in]="www.amazon.in" [mx]="www.amazon.com.mx" [br]="www.amazon.com.br"
+  [ie]="www.amazon.ie"
 )
 
 DOMAIN="${DOMAINS[$MP]:-www.amazon.com}"
