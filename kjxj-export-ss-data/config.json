@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "skill_name": "kjxj-export-ss-data",
+  "sellersprite": {
+    "welcome_url": "https://www.sellersprite.com/v2/welcome",
+    "login_url": "https://www.sellersprite.com/cn/w/user/login",
+    "export_log_url": "https://www.sellersprite.com/v2/export-log",
+    "download_hosts": ["o.sellersprite.com"],
+    "username": "kjxjkj",
+    "password_env": "SELLERSPRITE_PASSWORD"
+  },
+  "chrome_profile": {
+    "preferred_names": ["卖家精灵", "SellerSprite"],
+    "match_tokens": ["卖家精灵", "sellersprite"],
+    "create_name": "卖家精灵"
+  },
+  "paths": {
+    "download_dir": "~/Downloads",
+    "output_dir_name": "seller_sprite_exports",
+    "memory_file": "state/workflows.json"
+  },
+  "polling": {
+    "export_interval_seconds": 10,
+    "export_timeout_seconds": 300,
+    "download_interval_seconds": 1,
+    "download_timeout_seconds": 120,
+    "stable_observations": 2
+  }
+}

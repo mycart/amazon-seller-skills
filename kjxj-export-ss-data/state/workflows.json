@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-07-26T05:46:24.678693+00:00",
+  "workflows": [
+    {
+      "id": "keyword-mining",
+      "name": "关键词挖掘",
+      "aliases": [
+        "关键词挖掘数据",
+        "关键词挖掘导出",
+        "keyword mining"
+      ],
+      "entry_url": "https://www.sellersprite.com/v3/keyword-miner",
+      "menu_path": [
+        "工具",
+        "关键词挖掘"
+      ],
+      "marketplace": {
+        "parameter": "marketplace",
+        "default": "德国站",
+        "control": {
+          "role": "combobox",
+          "visible_value": "德国站"
+        }
+      },
+      "parameter_schema": {
+        "keyword": {
+          "label": "关键词",
+          "required": true,
+          "control": {
+            "role": "textbox",
+            "placeholder": "输入关键词，如: flashlight"
+          }
+        },
+        "relevance_min": {
+          "label": "相关度最小值",
+          "required": false,
+          "control": {
+            "role": "textbox",
+            "section": "相关度",
+            "position": "min"
+          }
+        },
+        "monthly_search_volume_min": {
+          "label": "月搜索量最小值",
+          "required": false,
+          "control": {
+            "role": "textbox",
+            "section": "月搜索量",
+            "position": "min"
+          }
+        }
+      },
+      "defaults": {
+        "keyword": "hundebett",
+        "relevance_min": 30,
+        "monthly_search_volume_min": 1
+      },
+      "steps": [
+        {
+          "action": "select",
+          "target": "marketplace"
+        },
+        {
+          "action": "fill",
+          "target": "keyword"
+        },
+        {
+          "action": "click",
+          "target": "立即查询"
+        },
+        {
+          "action": "fill",
+          "target": "relevance_min"
+        },
+        {
+          "action": "fill",
+          "target": "monthly_search_volume_min"
+        },
+        {
+          "action": "click",
+          "target": "开始筛选"
+        },
+        {
+          "action": "click",
+          "target": "导出"
+        }
+      ],
+      "export_source": "关键词挖掘",
+      "version": 1,
+      "last_successful_at": "2026-07-26T05:46:24.678503+00:00",
+      "source_run": "/Users/apple/Documents/Listing优化建议/seller_sprite_exports/runs/20260726_132003_关键词挖掘_德国站"
+    }
+  ]
+}

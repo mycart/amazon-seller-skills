@@ -1,0 +1,4 @@
+interface:
+  display_name: "KJXJ 卖家精灵数据导出"
+  short_description: "通过卖家精灵自动筛选、导出、下载并沉淀可复用操作流程"
+  default_prompt: "Use $kjxj-export-ss-data to export the requested Amazon data from SellerSprite with the provided parameters."
