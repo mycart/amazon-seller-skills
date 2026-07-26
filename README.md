@@ -9,7 +9,9 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-export-ss-data`
 - `kjxj-sync-cloud-drive`
+- `kjxj-sync-product-listing`
 - `monitor-asin-sale-chrome`
 - `monitor-amazon-listing-chrome`
 
@@ -28,7 +30,9 @@ npx skills add mycart/amazon-seller-skills --skill ads-amazon2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-product-listing -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
 npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 ```

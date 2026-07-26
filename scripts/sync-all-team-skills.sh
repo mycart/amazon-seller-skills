@@ -15,7 +15,7 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
   amazon-listing-optimization2 \
-  "/Users/apple/.agents/skills/amazon-listing-optimization2" \
+  "/Users/apple/.codex/skills/amazon-listing-optimization2" \
   "Sync amazon-listing-optimization2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
@@ -29,9 +29,19 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync amazon-product-research2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-export-ss-data \
+  "/Users/apple/.codex/skills/kjxj-export-ss-data" \
+  "Sync kjxj-export-ss-data"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-sync-cloud-drive \
   "/Users/apple/.agents/skills/kjxj-sync-cloud-drive" \
   "Sync kjxj-sync-cloud-drive"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-sync-product-listing \
+  "/Users/apple/.codex/skills/kjxj-sync-product-listing" \
+  "Sync kjxj-sync-product-listing"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
   monitor-asin-sale-chrome \

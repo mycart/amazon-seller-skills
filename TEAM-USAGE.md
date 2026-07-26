@@ -13,6 +13,9 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-export-ss-data`
+- `kjxj-sync-cloud-drive`
+- `kjxj-sync-product-listing`
 - `monitor-asin-sale-chrome`
 - `monitor-amazon-listing-chrome`
 
@@ -26,6 +29,9 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-product-listing -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
 npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 ```
@@ -80,6 +86,38 @@ Create a listing for a portable blender. Keywords: portable blender, smoothie ma
 
 ```text
 Use amazon-listing-optimization2 to optimize ASIN B0XXXXXXX. Please output the full optimized listing, detailed audit report, title options, and Excel report.
+```
+
+### `kjxj-export-ss-data`
+
+简介：
+
+- 使用持久化 Chrome 配置完成卖家精灵数据导出，保留导出记录、下载文件和可复用工作流。
+
+示例提示词：
+
+```text
+使用 kjxj-export-ss-data，在英国站对 cat window bed 执行关键词挖掘并导出结果。
+```
+
+```text
+使用 kjxj-export-ss-data，复用已保存的卖家精灵关键词挖掘流程，导出德国站 cat shelf 的数据。
+```
+
+### `kjxj-sync-product-listing`
+
+简介：
+
+- 将已审核的多 ASIN Listing 优化结果同步到多国家分类商品报告，执行前生成计划，写入副本并以浅绿色标记更新单元格。
+
+示例提示词：
+
+```text
+使用 kjxj-sync-product-listing，将当前目录中的 Listing 优化报告同步到已上传的英国分类商品报告 XLSM 文件。
+```
+
+```text
+使用 kjxj-sync-product-listing，先预检爱尔兰分类商品报告，展示待更新字段后等待我确认执行。
 ```
 
 ### `amazon-ppc-campaign2`
@@ -171,9 +209,11 @@ scripts/sync-all-team-skills.sh
 
 - `ads-amazon2` -> `/Users/apple/.agents/skills/ads-amazon2`
 - `amazon-asin-availability-monitor2` -> `/Users/apple/.agents/skills/amazon-asin-availability-monitor2`
-- `amazon-listing-optimization2` -> `/Users/apple/.agents/skills/amazon-listing-optimization2`
+- `amazon-listing-optimization2` -> `/Users/apple/.codex/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
+- `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`
+- `kjxj-sync-product-listing` -> `/Users/apple/.codex/skills/kjxj-sync-product-listing`
 - `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`
 - `monitor-amazon-listing-chrome` -> `/Users/apple/.codex/skills/monitor-amazon-listing-chrome`
 
