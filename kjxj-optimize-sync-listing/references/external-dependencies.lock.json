@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/nexscope-ai/Amazon-Skills.git",
+  "discovery_url": "https://www.skills.sh/nexscope-ai/amazon-skills",
+  "commit": "bdc556233805bbc3b5d8d865f3f3bd153864970f",
+  "license_source": "https://github.com/nexscope-ai/Amazon-Skills",
+  "skills": {
+    "amazon-keyword-research": {
+      "path": "/Users/apple/.agents/skills/amazon-keyword-research",
+      "capabilities": ["scripts/research.sh --format json"],
+      "files": {
+        "SKILL.md": "fb28a3c0e844f6e7cc632d8a80a373df489db9c8",
+        "_meta.json": "2e84abbbc61e6b7a1bd57fbb8a0abbe616cb4335",
+        "scripts/research.sh": "5b92bacd941d8421cc23d6f26e1bb832c476c551"
+      }
+    },
+    "amazon-listing-optimization": {
+      "path": "/Users/apple/.agents/skills/amazon-listing-optimization",
+      "capabilities": ["scripts/fetch-listing.sh <ASIN> <marketplace>"],
+      "files": {
+        "SKILL.md": "7ac0e582d178bab43fae7772cf39578fefecda4e",
+        "_meta.json": "b7c027269ebff0c9aa15e7c51103779dc0f15df9",
+        "scripts/fetch-listing.sh": "4f08bb8269c9b5bcf4adc338f626fafacb61582e"
+      }
+    },
+    "amazon-ppc-campaign": {
+      "path": "/Users/apple/.agents/skills/amazon-ppc-campaign",
+      "capabilities": ["scripts/fetch-competitor.sh <ASIN>"],
+      "files": {
+        "SKILL.md": "6d26dc36be39632bea53a05455242efc18fdcd58",
+        "scripts/fetch-competitor.sh": "8f1a52a49ef0c54bbee2705bfa36d8a5f76e508d"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 # Amazon Seller Skills 团队使用说明
 
-本文档说明当前仓库中已经共享的 Codex skills，以及团队成员如何安装、使用和同步这些技能。
+本文档用于说明当前这个仓库里已经共享的 Codex Skills，以及团队成员如何安装、使用和同步这些技能。
 
 ## 仓库信息
 
@@ -13,8 +13,10 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
-- `monitor-asin-sale-chrome`
+- `kjxj-optimize-sync-listing`
+- `kjxj-sync-cloud-drive`
 - `monitor-amazon-listing-chrome`
+- `monitor-asin-sale-chrome`
 
 ## 安装方式
 
@@ -26,11 +28,13 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
-npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
 npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
+npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
 ```
 
-如果只需要其中一个 skill，只执行对应那一条命令即可。
+如果某位成员只需要其中一个技能，只执行对应那一条命令即可。
 
 ## 技能适用场景
 
@@ -38,23 +42,27 @@ npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome
 
 简介：
 
-- 用于深度审查 Amazon Ads 投放结构、搜索词收割、否词纪律、ACOS/TACOS 与基础 DSP 视角。
+- Amazon Ads deep analysis covering Sponsored Products, Sponsored Brands (incl.
 
 示例提示词：
 
 ```text
-Use ads-amazon2 to audit my Amazon advertising account. I have Sponsored Products, Sponsored Brands, and Sponsored Display running. Review campaign structure, search-term harvesting, ACOS discipline, and brand analytics usage.
-```
+Amazon Ads Health Score: XX/100 (Grade: X)
 
-```text
-Use ads-amazon2 to review my last 60 days of Amazon Ads reports and generate an Amazon Ads Health Score with a prioritized action plan.
+Campaign Structure:     XX/100  ████████░░  (15%)
+Search-Term Harvesting: XX/100  ██████████  (25%)
+ACOS / TACOS Discipline:XX/100  █████████░  (20%)
+Bid & Budget Mgmt:      XX/100  ████████░░  (15%)
+Sponsored Brands:       XX/100  ███████░░░  (10%)
+Sponsored Display:      XX/100  ███████░░░  (10%)
+Brand Analytics:        XX/100  █████░░░░░  (5%)
 ```
 
 ### `amazon-asin-availability-monitor2`
 
 简介：
 
-- 用于在没有 SP-API 权限时，通过 Amazon 前台页面监控自有 ASIN 是否可购买，并在异常时通过邮件和飞书通知。
+- Monitor Amazon ASIN front-end buyability for seller-owned listings without SP-API access.
 
 示例提示词：
 
@@ -70,88 +78,153 @@ Use ads-amazon2 to review my last 60 days of Amazon Ads reports and generate an 
 
 简介：
 
-- 用于创建新 Listing、审计现有 Listing，并输出关键词覆盖、文案优化与标题/卖点方案。
+- Create and optimize Amazon listings in 12 marketplaces using product facts, keywords, competitor listings, optional CSV/XLSX keyword files, and seller-provided core selling points.
 
 示例提示词：
 
 ```text
-Create a listing for a portable blender. Keywords: portable blender, smoothie maker, USB rechargeable, travel blender, personal blender. Material: BPA-free Tritan. Color: White. Capacity: 380ml. Tone: Friendly.
+npx skills add nexscope-ai/Amazon-Skills --skill amazon-listing-optimization -g
 ```
 
 ```text
-Use amazon-listing-optimization2 to optimize ASIN B0XXXXXXX. Please output the full optimized listing, detailed audit report, title options, and Excel report.
+Create a listing for a portable blender. Keywords: portable blender, smoothie maker, USB rechargeable, travel blender, personal blender. Material: BPA-free Tritan. Color: White. Capacity: 380ml. Tone: Friendly.
 ```
 
 ### `amazon-ppc-campaign2`
 
 简介：
 
-- 用于从 0 搭建 Amazon PPC 结构，或基于现有广告数据做调价、迁移和否词优化。
+- Amazon PPC campaign builder and optimizer for sellers.
 
 示例提示词：
 
 ```text
-I'm launching a portable blender on Amazon US. Price: $39.99. Product cost: $8, shipping: $3, Amazon fees: $7.50. Here are my keywords: portable blender, personal blender, smoothie maker. Build me a PPC campaign structure.
+npx skills add nexscope-ai/Amazon-Skills --skill amazon-ppc -g
 ```
 
 ```text
-My PPC ACoS is 58% and my target is 30%. I have 3 campaigns: Auto ($800/month, ACoS 67%), Manual Broad ($1,100, ACoS 48%), Manual Exact ($500, ACoS 33%). Product margin is 54%. Help me optimize.
+I'm launching a portable blender on Amazon US. Price: $39.99. Product cost: $8, shipping: $3, Amazon fees: $7.50. Here are my keywords: portable blender, personal blender, smoothie maker. Build me a PPC campaign structure.
 ```
 
 ### `amazon-product-research2`
 
 简介：
 
-- 用于做 Amazon 选品研究、需求判断、竞争强度分析、利润空间评估与进入门槛验证。
+- Comprehensive product research and opportunity analysis for Amazon sellers.
 
 示例提示词：
+
+```text
+npx skills add nexscope-ai/Amazon-Skills --skill amazon-product-research2 -g
+```
 
 ```text
 Research "wireless earbuds" as a product opportunity on Amazon
 ```
 
-```text
-Should I sell "phone cases" or "phone stands"? Compare both opportunities
-```
-
-### `monitor-asin-sale-chrome`
+### `kjxj-optimize-sync-listing`
 
 简介：
 
-- 使用 Codex Chrome 插件监控 Amazon ASIN 前台可售状态，按 ASIN+国家/站点输出最终结论并导出 Excel 报告。
+- 端到端编排 Amazon Listing 优化、关键词准备、2026 短标题与商品亮点、分类商品报告预检和确认后写入、主 ASIN PPC 广告方案及 Rufus/Alexa 商品 Q/A。用于用户提供主 ASIN、站点、核心关键词、卖点、可选竞品和变体、可选 CSV/XLSX 关键词资料、XLSM 分类商品报告及可选广告参数，并要求先完整审核五份 Mark
 
 示例提示词：
 
 ```text
-使用 monitor-asin-sale-chrome，检查当前工作区的 Amazon ASIN 清单，并导出按 ASIN+国家/站点汇总的可售状态 Excel 报告。
+## 阻塞说明
+- 阶段：<当前阶段与受影响 ASIN/文件>
+- 原因：<可验证的报错、缺失字段或限制；不猜测>
+- 已尝试：<按时间顺序列出路径及结果>
+- 解决方法：<用户现在需要完成的最小操作，或可由系统继续执行的下一步>
+- 下次预防：<上传、权限、页面可访问性、文件格式或数据准备建议>
+- 继续条件：<满足后从哪个阶段恢复>
 ```
 
 ```text
-使用 monitor-asin-sale-chrome，使用 Codex Chrome 插件复核异常 ASIN，并输出最终确认结果。
+使用 $kjxj-optimize-sync-listing 执行 Amazon Listing 优化、分类报告同步与主ASIN广告方案创建。
+
+1. 目标ASIN与站点
+   主ASIN：[填写，例如 B0F4NDR1ZB]
+   Amazon站点：[填写，例如 UK、DE、IE]
+
+2. 核心关键词
+   [填写；多个关键词可用逗号、顿号或换行分隔]
+
+3. 竞品ASIN（选填，最多3个）
+   [填写；没有则写“无”]
+
+4. 产品核心卖点（支持中文）
+   [填写；多个卖点可用顿号或换行分隔]
+
+5. 变体信息（选填，每行一个）
+   [变体ASIN]-[颜色]-[尺寸或型号]([补充说明])
+   示例：B0F596K897-灰色-M(适合中型猫咪)
+   [没有变体则写“无”]
+
+6. 关键词资料（选填；均不选择时自动使用 Amazon autocomplete 补词）
+   使用上传文件：[是/否]
+   使用卖家精灵自动挖掘：[是/否]
+   关键词文件：[选择上传文件时，上传一个或多个 CSV/XLSX；否则写“无”]
+
+7. 分类商品报告
+   [上传一个与目标站点一致的 XLSM 文件]
+
+8. 主ASIN广告方案参数（均可选）
+   月度广告预算：[选填；EUR/USD站未填默认600，其它站按执行当天汇率将USD 600换算为本币]
+   财务依据：[选填；未填完整成本或盈亏平衡ACoS时，默认盈亏平衡ACoS为40%]
+   A. 单件到岸成本：[选填]；Amazon单件费用：[选填；两项完整时优先使用]
+   B. 盈亏平衡ACoS：[选填百分比]
+   预期转化率：[选填；不知道则写“未知”]
+   商品阶段：[新品/成熟期；默认新品]
+```
+
+### `kjxj-sync-cloud-drive`
+
+简介：
+
+- 将用户指定文件或零碎文本智能整理并同步到跨境电商云盘，含目录归类、长期资源索引维护、文本台账、冲突判断、图片/PDF 压缩和月度操作日志。Use when the user asks to sync, copy, archive, update, overwrite, append, classify, or store files/text in the
+
+示例提示词：
+
+```text
+python3 <skill-dir>/scripts/check_sync_item.py --source "/absolute/source" --target "/absolute/target" --hash
 ```
 
 ### `monitor-amazon-listing-chrome`
 
 简介：
 
-- 使用 Codex Chrome 插件监控多国家 Amazon ASIN 前台 Listing 的完整度和编写质量，按 ASIN + 国家生成评分、问题摘要、核心优化建议及 Excel、Markdown、JSON 报告。
-- 支持当前工作目录配置、异常截图，以及按配置发送邮件和飞书通知；邮件可附加 Excel 报告。
+- Monitor Amazon ASIN listing completeness and quality across multiple marketplaces using the Codex Chrome plugin, a configurable Excel ASIN list, local scoring/report scripts, and o
 
 示例提示词：
 
 ```text
-使用 monitor-amazon-listing-chrome，读取当前工作目录的 config.yaml，检查 Excel 中全部 ASIN + 国家站点的 Listing 完整度和质量，生成 Excel、Markdown、JSON 报告；如果配置启用了邮件或飞书，请发送报告。
+/Users/apple/Documents/Listing优化建议/amazon_chrome_listing_monitor/config.yaml
 ```
 
-安装：
+```text
+/Users/apple/Documents/Listing优化建议/ASIN可购买性监控模板.xlsx
+```
 
-```bash
-npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
+### `monitor-asin-sale-chrome`
+
+简介：
+
+- Monitor Amazon ASIN front-end sale/buyability status with the Codex Chrome plugin instead of launching standalone Playwright.
+
+示例提示词：
+
+```text
+使用 monitor-asin-sale-chrome，帮我创建 ASIN 销售状态监控模板。
+```
+
+```text
+使用 monitor-asin-sale-chrome，检查当前工作区的 config.yaml 和 Excel 清单是否配置正确。
 ```
 
 ## 后续同步流程
 
-这个仓库已经内置同步脚本。后续本地某个 skill 内容有修改时，可以按下面方式同步。
+这个仓库已经内置了同步脚本。以后本地某个技能内容有修改后，可以使用以下方式同步。
 
 同步单个技能：
 
@@ -160,7 +233,7 @@ cd /Users/apple/Documents/amazon-seller-skills
 scripts/sync-skill.sh <skill-name> "/path/to/local/skill" "Sync <skill-name>"
 ```
 
-同步当前全部共享 skill：
+同步当前全部已共享团队技能：
 
 ```bash
 cd /Users/apple/Documents/amazon-seller-skills
@@ -171,15 +244,17 @@ scripts/sync-all-team-skills.sh
 
 - `ads-amazon2` -> `/Users/apple/.agents/skills/ads-amazon2`
 - `amazon-asin-availability-monitor2` -> `/Users/apple/.agents/skills/amazon-asin-availability-monitor2`
-- `amazon-listing-optimization2` -> `/Users/apple/.agents/skills/amazon-listing-optimization2`
+- `amazon-listing-optimization2` -> `/Users/apple/.codex/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
-- `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`
+- `kjxj-optimize-sync-listing` -> `/Users/apple/.agents/skills/kjxj-optimize-sync-listing`
+- `kjxj-sync-cloud-drive` -> `/Users/apple/.agents/skills/kjxj-sync-cloud-drive`
 - `monitor-amazon-listing-chrome` -> `/Users/apple/.codex/skills/monitor-amazon-listing-chrome`
+- `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`
 
 ## 团队建议
 
-- 安装 skill 时优先按需安装，不必一次性全部安装。
-- 修改共享 skill 前先确认本地源目录是否正确，避免改错副本。
-- 完成修改后优先使用仓库内脚本同步，保持团队共享版本统一。
-- 后续继续新增其它 skill 时，延续当前“一个仓库、多个技能文件夹”的方式即可。
+- 安装技能时，优先按需安装，不必一次性全部安装。
+- 修改共享技能前，先确认本地源目录是否正确，避免改错副本。
+- 完成修改后，优先使用仓库内脚本同步，保持团队共享版本统一。
+- 如果后续仓库中继续新增其它 skill，延续当前“一个仓库、多个技能文件夹”的方式即可，团队管理会更清晰。
