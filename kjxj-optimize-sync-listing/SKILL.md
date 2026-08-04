@@ -3,7 +3,7 @@ name: kjxj-optimize-sync-listing
 description: "端到端编排 Amazon Listing 优化、关键词准备、2026 短标题与商品亮点、分类商品报告预检和确认后写入、主 ASIN PPC 广告方案及 Rufus/Alexa 商品 Q/A。用于用户提供主 ASIN、站点、核心关键词、卖点、可选竞品和变体、可选 CSV/XLSX 关键词资料、XLSM 分类商品报告及可选广告参数，并要求先完整审核五份 Markdown、确认后再写入 XLSM 时。"
 ---
 
-# KJXJ Amazon Listing 优化与同步 2
+# Amazon Listing 优化与表单模版同步
 
 将本 Skill 作为唯一入口。说明、状态、审核、策略和错误信息使用中文；真实 Listing、广告关键词及 Q/A 使用目标站点语言。用户数据和可验证网页数据优先，禁止补写缺失产品事实。
 
