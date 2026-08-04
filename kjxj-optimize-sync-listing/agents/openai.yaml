@@ -1,0 +1,4 @@
+interface:
+  display_name: "KJXJ Listing 优化同步 2"
+  short_description: "五方案确认门禁贯穿 Listing、标题、PPC、XLSM 与 Rufus 问答"
+  default_prompt: "使用 $kjxj-optimize-sync-listing 完成 Amazon Listing 优化、2026 标题、PPC、分类报告同步和 Rufus Q/A。"

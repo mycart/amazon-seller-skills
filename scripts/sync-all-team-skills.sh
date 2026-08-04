@@ -34,6 +34,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync kjxj-export-ss-data"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-optimize-sync-listing \
+  "/Users/apple/.agents/skills/kjxj-optimize-sync-listing" \
+  "Sync kjxj-optimize-sync-listing"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-sync-cloud-drive \
   "/Users/apple/.agents/skills/kjxj-sync-cloud-drive" \
   "Sync kjxj-sync-cloud-drive"
@@ -44,11 +49,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync kjxj-sync-product-listing"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
-  monitor-asin-sale-chrome \
-  "/Users/apple/.codex/skills/monitor-asin-sale-chrome" \
-  "Sync monitor-asin-sale-chrome"
-
-"${REPO_ROOT}/scripts/sync-skill.sh" \
   monitor-amazon-listing-chrome \
   "/Users/apple/.codex/skills/monitor-amazon-listing-chrome" \
   "Sync monitor-amazon-listing-chrome"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  monitor-asin-sale-chrome \
+  "/Users/apple/.codex/skills/monitor-asin-sale-chrome" \
+  "Sync monitor-asin-sale-chrome"
