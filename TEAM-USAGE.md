@@ -13,6 +13,8 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-amazon-listing-pipeline`
+- `kjxj-amazon-title-optimizer`
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
@@ -30,6 +32,8 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-listing-pipeline -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
@@ -124,6 +128,30 @@ npx skills add nexscope-ai/Amazon-Skills --skill amazon-product-research2 -g
 
 ```text
 Research "wireless earbuds" as a product opportunity on Amazon
+```
+
+### `kjxj-amazon-listing-pipeline`
+
+简介：
+
+- Run an end-to-end Amazon listing workflow from a Codex conversation and uploaded attachments: collect evidence and keywords, optimize Listing and 2026 title fields, create PPC and
+
+示例提示词：
+
+```text
+Use kjxj-amazon-listing-pipeline to help me with this skill workflow.
+```
+
+### `kjxj-amazon-title-optimizer`
+
+简介：
+
+- >
+
+示例提示词：
+
+```text
+Use kjxj-amazon-title-optimizer to help me with this skill workflow.
 ```
 
 ### `kjxj-export-ss-data`
@@ -293,6 +321,8 @@ scripts/sync-all-team-skills.sh
 - `amazon-listing-optimization2` -> `/Users/apple/.codex/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
+- `kjxj-amazon-listing-pipeline` -> `/Users/apple/.codex/skills/kjxj-amazon-listing-pipeline`
+- `kjxj-amazon-title-optimizer` -> `/Users/apple/.codex/skills/kjxj-amazon-title-optimizer`
 - `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing` -> `/Users/apple/.agents/skills/kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive` -> `/Users/apple/.agents/skills/kjxj-sync-cloud-drive`

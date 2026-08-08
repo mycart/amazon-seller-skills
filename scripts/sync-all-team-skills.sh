@@ -29,6 +29,16 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync amazon-product-research2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amazon-listing-pipeline \
+  "/Users/apple/.codex/skills/kjxj-amazon-listing-pipeline" \
+  "Sync kjxj-amazon-listing-pipeline"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amazon-title-optimizer \
+  "/Users/apple/.codex/skills/kjxj-amazon-title-optimizer" \
+  "Sync kjxj-amazon-title-optimizer"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-export-ss-data \
   "/Users/apple/.codex/skills/kjxj-export-ss-data" \
   "Sync kjxj-export-ss-data"

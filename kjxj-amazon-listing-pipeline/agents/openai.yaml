@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Listing Conversation Pipeline"
+  short_description: "Conversation-driven Amazon Listing workflow"
+  default_prompt: "Use $kjxj-amazon-listing-pipeline to optimize my listing from the Chinese template and uploaded CSV/XLSM attachments."
