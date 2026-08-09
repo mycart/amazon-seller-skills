@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 跨市场模板提示词"
+  short_description: "实时生成欧美市场提示词，支持浏览器降级取证与本地化"
+  default_prompt: "使用 $kjxj-amazon-template-prompts 将以下亚马逊商品模板扩展为欧美各站的独立提示词。"
