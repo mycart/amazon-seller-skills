@@ -29,7 +29,8 @@ MARKET_DOMAINS = {
     "NL": "amazon.nl", "SE": "amazon.se", "PL": "amazon.pl", "BE": "amazon.com.be",
     "TR": "amazon.com.tr", "IE": "amazon.ie",
 }
-RETRIEVAL_CHANNELS = ("chrome", "in_app_browser", "firecrawl", "http_diagnostic")
+RETRIEVAL_CHANNELS = ("chrome", "in_app_browser")
+KEYWORD_EVIDENCE_SOURCES = ("product_title", "search_heading", "autocomplete", "competitor_title")
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -113,6 +114,20 @@ def competitor_attempts(market: dict[str, Any]) -> list[dict[str, Any]]:
     return [item for item in values if isinstance(item, dict)] if isinstance(values, list) else []
 
 
+def keyword_evidence(market: dict[str, Any]) -> dict[str, Any]:
+    value = market.get("keyword_evidence")
+    return value if isinstance(value, dict) else {}
+
+
+def refreshed_keyword(market: dict[str, Any]) -> str:
+    """Never render a template seed as a target-market keyword."""
+    evidence = keyword_evidence(market)
+    value = market.get("keyword")
+    if evidence.get("status") == "verified" and isinstance(value, str) and value.strip() and value.strip() != "待补充":
+        return value.strip()
+    return "待补充"
+
+
 def localized_value(market: dict[str, Any], key: str, original: str) -> str:
     value = market.get(key)
     return str(value).strip() if isinstance(value, str) and value.strip() else original
@@ -190,6 +205,7 @@ def analysis_for(market: dict[str, Any], fx: dict[str, Any], records: list[dict[
             "attempts": attempts,
             "exhausted": bool(market.get("competitor_attempts_exhausted", False)),
         },
+        "keyword": keyword_evidence(market),
         "localization": localization,
         "fx": {
             "status": fx.get("status", "pending"),
@@ -207,7 +223,7 @@ def render(template: str, market: dict[str, Any], source_market: str | None) -> 
     country = str(market.get("country", market.get("code", "待确认")))
     code = str(market.get("code", "")).upper()
     fx = market.get("fx", {}) if isinstance(market.get("fx"), dict) else {}
-    keyword = str(market.get("keyword", "待补充"))
+    keyword = refreshed_keyword(market)
     competitor_records = normalized_competitor_records(market.get("competitors"), code)
     competitors = [record["asin"] for record in competitor_records]
     competitor_text = "、".join(competitors) if competitors else "待补充"
@@ -270,6 +286,8 @@ def render(template: str, market: dict[str, Any], source_market: str | None) -> 
         "code": code,
         "country": country,
         "keyword": keyword,
+        "keyword_evidence": keyword_evidence(market),
+        "keyword_refresh_status": keyword_evidence(market).get("status", "failed"),
         "localized_product_type": market.get("localized_product_type"),
         "competitor_asins": competitors,
         "competitor_evidence": competitor_records,
@@ -308,9 +326,10 @@ def self_test() -> int:
     template = "国家站：UK\n主ASIN：B0GKDRNR72\n产品类型：cat scratching mat\n材质：sisal\n产品事实/卖点：strong adhesive, durable\n变体：B0GKDK191Q-white-(60 x 40 cm)\n竞品ASIN：B0FXWM6BWB\n售价：18 GBP\n"
     market = {
         "code": "DE", "country": "德国", "keyword": "selbstklebende Katzenkratzmatte",
+        "keyword_evidence": {"status": "verified", "source_type": "search_heading", "source_text": "Katzenkratzmatte", "evidence_url": "https://www.amazon.de/s?k=katzenkratzmatte", "channel": "chrome", "captured_at": "2026-08-09T00:00:00Z"},
         "localized_product_type": "selbstklebende Katzenkratzmatte", "localized_material": "Sisal",
         "localized_facts": "starke Haftung, langlebig", "competitors": [{"asin": "B0D4TPT9GW", "source_type": "organic", "title": "Katzenkratzmatte", "position": 1, "channel": "chrome", "evidence_url": "https://www.amazon.de/s?k=katzenkratzmatte", "captured_at": "2026-08-09T00:00:00Z"}],
-        "competitor_attempts": [{"channel": "chrome", "captured_at": "2026-08-09T00:00:00Z", "url": "https://www.amazon.de/s?k=katzenkratzmatte", "page_status": "ok", "result_count": 1, "reason": "", "continue_to_next": False}],
+        "competitor_attempts": [{"channel": "chrome", "captured_at": "2026-08-09T00:00:00Z", "url": "https://www.amazon.de/s?k=katzenkratzmatte", "page_status": "ok", "result_count": 1, "reason": "", "continue_to_next": False, "readiness": {"state": "ready", "polls": 2, "waited_ms": 1500, "visible_card_count": 1, "screenshot_path": ""}}],
         "variants": [{"asin": "B0GKDK191Q", "localized_color": "Weiß", "localized_size": "60 x 40 cm", "status": "unavailable", "availability": "unavailable"}],
         "evidence": {"status": "verified", "availability": "unavailable", "reason": "商品页已核验，当前不可售"},
         "localization": {"product_type": {"status": "verified"}},
@@ -322,11 +341,21 @@ def self_test() -> int:
     assert "B0GKDK191Q-Weiß-(60 x 40 cm)" in text and "21.06 EUR" in text
     assert "不可售" not in text and "待实时核验" not in text
     assert meta["analysis"]["primary_asin"]["availability"] == "unavailable"
+    source_template = "国家站：DE\n核心关键词：alte Suchphrase\n竞品ASIN：B0OLDASIN00\n"
+    source_text, _ = render(source_template, market, "DE")
+    assert "alte Suchphrase" not in source_text and "B0OLDASIN00" not in source_text
+    assert "核心关键词：selbstklebende Katzenkratzmatte" in source_text
+    assert "竞品ASIN：B0D4TPT9GW" in source_text
     pipeline_template = "使用 $kjxj-amazon-listing-pipeline\n国家站：UK\n主ASIN：B0GKDRNR72\n"
-    pending = {"code": "US", "country": "美国", "keyword": "self adhesive cat scratch mat", "localized_product_type": "self adhesive cat scratch mat", "competitors": [], "evidence": {"status": "challenge", "reason": "CAPTCHA"}, "competitor_status": "failed", "competitor_reason": "CAPTCHA", "competitor_attempts_exhausted": True, "competitor_attempts": [{"channel": channel, "captured_at": "2026-08-09T00:00:00Z", "url": "https://www.amazon.com/s?k=cat+scratch+mat", "page_status": "blocked", "result_count": 0, "reason": "CAPTCHA", "continue_to_next": channel != "http_diagnostic"} for channel in RETRIEVAL_CHANNELS], "fx": {"status": "pending", "reason": "汇率源不可用"}, "localization": {"product_type": {"status": "pending", "reason": "CAPTCHA"}}}
+    pending_attempts = []
+    for index, channel in enumerate(RETRIEVAL_CHANNELS):
+        pending_attempts.append({"channel": channel, "captured_at": "2026-08-09T00:00:00Z", "url": "https://www.amazon.com/s?k=cat+scratch+mat", "page_status": "blocked", "result_count": 0, "reason": "CAPTCHA", "continue_to_next": index == 0, "readiness": {"state": "blocked", "polls": 1, "waited_ms": 0, "visible_card_count": 0, "screenshot_path": "evidence/us-blocked.png"}})
+    pending = {"code": "US", "country": "美国", "keyword": "source keyword must not survive", "keyword_evidence": {"status": "failed", "reason": "CAPTCHA", "source_type": "search_heading", "source_text": "", "evidence_url": "https://www.amazon.com/s?k=cat+scratch+mat", "channel": "in_app_browser", "captured_at": "2026-08-09T00:00:00Z"}, "localized_product_type": "self adhesive cat scratch mat", "competitors": [], "evidence": {"status": "challenge", "reason": "CAPTCHA"}, "competitor_status": "failed", "competitor_reason": "CAPTCHA", "competitor_attempts_exhausted": True, "competitor_attempts": pending_attempts, "fx": {"status": "pending", "reason": "汇率源不可用"}, "localization": {"product_type": {"status": "pending", "reason": "CAPTCHA"}}}
     pending_text, pending_meta = render(pipeline_template, pending, "UK")
     assert "产品类型：self adhesive cat scratch mat" in pending_text
     assert "竞品ASIN（最多3个）：待补充" in pending_text
+    assert "核心关键词：待补充" in pending_text
+    assert "source keyword must not survive" not in pending_text
     assert "CAPTCHA" not in pending_text and "待实时核验" not in pending_text
     assert pending_meta["analysis"]["fx"]["reason"] == "汇率源不可用"
     print("self-test passed")
