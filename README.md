@@ -9,6 +9,7 @@ This repository is a monorepo for Codex skills used by the team.
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline`
 - `kjxj-amazon-title-optimizer`
 - `kjxj-export-ss-data`
@@ -33,6 +34,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-listing-pipeline -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g

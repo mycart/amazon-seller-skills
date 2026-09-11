@@ -13,6 +13,7 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
+- `kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline`
 - `kjxj-amazon-title-optimizer`
 - `kjxj-export-ss-data`
@@ -32,6 +33,7 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-listing-pipeline -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
@@ -128,6 +130,22 @@ npx skills add nexscope-ai/Amazon-Skills --skill amazon-product-research2 -g
 
 ```text
 Research "wireless earbuds" as a product opportunity on Amazon
+```
+
+### `kjxj-amazon-monthly-report-analyzer`
+
+简介：
+
+- 解析 Amazon Seller Central 月度报告摘要 PDF，提取多店铺、多商城的收入、支出、广告费和利润，并生成中文 Excel 汇总、经营结论与预警。
+
+示例提示词：
+
+```text
+使用 kjxj-amazon-monthly-report-analyzer 分析我上传的 Amazon MonthlySummary PDF，并生成中文财务汇总 Excel。
+```
+
+```text
+汇总多个店铺和国家的月度报告，分析净利润、ACOS 与经营预警。
 ```
 
 ### `kjxj-amazon-listing-pipeline`
@@ -321,6 +339,7 @@ scripts/sync-all-team-skills.sh
 - `amazon-listing-optimization2` -> `/Users/apple/.codex/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
+- `kjxj-amazon-monthly-report-analyzer` -> `/Users/apple/.agents/skills/kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline` -> `/Users/apple/.codex/skills/kjxj-amazon-listing-pipeline`
 - `kjxj-amazon-title-optimizer` -> `/Users/apple/.codex/skills/kjxj-amazon-title-optimizer`
 - `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`

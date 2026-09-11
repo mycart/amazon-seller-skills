@@ -1,0 +1,65 @@
+{
+  "_说明": "亚马逊各国卖家后台导出的月度报告(MonthlySummary)使用当地语言。新增一个国家/商城时，只需在下面每个分类里补充对应语言的关键词即可，无需改代码。",
+
+  "section_headers": {
+    "revenue":   ["Revenus", "Revenu", "Einnahmen", "Revenue", "Income", "Ingresos", "Entrate", "Omzet", "Inkomen", "Przychody", "Intäkter"],
+    "expenses":  ["Dépenses", "Ausgaben", "Expenses", "Gastos", "Spese", "Uitgaven", "Wydatki", "Utgifter"],
+    "tax":       ["Taxe", "Steuer", "Tax", "Impuesto", "Tasse", "Belasting", "Podatek", "Skatt", "Moms"],
+    "transfers": ["Transferts", "Übertragungen", "Transfers", "Transferencias", "Trasferimenti", "Overboekingen", "Przelewy", "Överföringar"]
+  },
+
+  "subtotal_markers": ["sous-totaux", "Zwischensummen", "subtotals", "subtotales", "totali parziali", "subtotalen", "sumy częściowe", "delsummor"],
+
+  "total_column_markers": ["Totaux", "Gesamt", "Total", "Totals", "Totales", "Totale", "Totaal", "Totalen", "Razem", "Totalt", "Totalsummor"],
+
+  "display_name_labels": ["Nom affiché", "Nom commercial tel qu'il doit apparaître", "Anzeigename", "Display name", "Display Name", "Nombre público", "Nome visualizzato", "Weergavenaam", "Visningsnamn"],
+  "legal_name_labels": ["Dénomination légale", "Nom légal", "Eingetragener Firmenname", "Legal name", "Legal Entity Name", "Nombre legal", "Ragione sociale", "Wettelijke naam", "Juridiskt namn"],
+
+  "country_name_map": {
+    "法国": "France",
+    "德国": "Germany",
+    "意大利": "Italy",
+    "西班牙": "Spain",
+    "英国": "UK",
+    "美国": "US",
+    "荷兰": "Netherlands",
+    "波兰": "Poland",
+    "瑞典": "Sweden",
+    "比利时": "Belgium",
+    "加拿大": "Canada",
+    "日本": "Japan"
+  },
+
+  "currency_symbol_map": {
+    "_说明": "有些语言的报表不写标准三字母货币代码（如瑞典写 kr），用这个表做补充识别。",
+    "kr": "SEK",
+    "zł": "PLN",
+    "Fr": "CHF"
+  },
+
+  "key_metrics": {
+    "_说明": "用于从明细行中识别关键经营指标（不区分大小写、子串匹配）。可按需增补语言/地区关键词——同一语言不同商城措辞也可能略有差异（如法国 vs 比利时）。",
+    "advertising_cost": ["Prix de la publicité", "Coût de la publicité", "Werbekosten", "Advertising Cost", "Cost of Advertising", "Costes de publicidad", "Costo pubblicità", "Advertentiekosten", "Reklamkostnad"],
+    "fba_selling_fees": ["Frais de vente « Expédié par Amazon »", "Frais de ventes Expédié par Amazon", "Verkaufsgebühren Versand durch Amazon", "FBA-verkoopkosten", "FBA-försäljningsavgifter", "FBA selling fees"],
+    "fba_transaction_fees": ["Frais de transaction « Expédié par Amazon »", "Frais de transaction Expédié par Amazon", "Transaktionsgebühren Versand durch Amazon", "FBA-transactiekosten", "FBA-transaktionsavgifter", "FBA transaction fees"],
+    "storage_fees": ["Frais de stockage", "Lagerbestands- und Service-Gebühren", "Kosten voor voorraad en binnenkomende goederen bij FBA", "FBA-avgifter för lagerhållning", "FBA inventory and inbound services fees", "Fulfillment by Amazon Fees"],
+    "promotional_rebates": ["Rabais promotionnels", "Total des réductions", "Werbeaktions-Rabatte", "Promotiekortingen", "Kampanjrabatter", "Promotional rebates"],
+    "refunds_fba": ["Remboursement des produits vendus et « Expédié par Amazon »", "Remboursements des ventes de produits Expédié par Amazon", "Erstattungen für durch Amazon versandte Artikel", "Terugbetalingen voor verkoop van FBA-producten", "Återbetalningar FBA-produktförsäljning", "FBA product sale refunds"],
+    "service_fees": ["Frais sur les services", "Frais de service", "Servicegebühren", "Servicekosten", "Serviceavgifter", "Service fees"],
+    "liquidation_fees": ["Frais de liquidation", "Frais de liquidations", "Gebühren für Liquidationen", "Liquidations fees", "Avgifter för utförsäljningar"]
+  },
+
+  "_汇率说明": "exchange_rates_to_eur：把各币种折算成欧元用于跨国/跨店铺汇总对比的参考汇率（写入时的近似市场汇率，仅供经营分析参考，不作为财务/报税依据）。以后可以直接把数字改成当期实际汇率。",
+  "exchange_rates_to_eur": {
+    "EUR": 1.0,
+    "USD": 0.859,
+    "SEK": 0.0896,
+    "GBP": 1.17,
+    "PLN": 0.23,
+    "CHF": 1.07,
+    "CAD": 0.63,
+    "AUD": 0.57,
+    "MXN": 0.047,
+    "JPY": 0.0059
+  }
+}
