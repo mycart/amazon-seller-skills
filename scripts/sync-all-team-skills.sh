@@ -29,19 +29,29 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync amazon-product-research2"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
-  kjxj-amazon-monthly-report-analyzer \
-  "/Users/apple/.agents/skills/kjxj-amazon-monthly-report-analyzer" \
-  "Sync kjxj-amazon-monthly-report-analyzer"
-
-"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-amazon-listing-pipeline \
   "/Users/apple/.codex/skills/kjxj-amazon-listing-pipeline" \
   "Sync kjxj-amazon-listing-pipeline"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amazon-monthly-report-analyzer \
+  "/Users/apple/.agents/skills/kjxj-amazon-monthly-report-analyzer" \
+  "Sync kjxj-amazon-monthly-report-analyzer"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amazon-template-prompts \
+  "/Users/apple/.codex/skills/kjxj-amazon-template-prompts" \
+  "Sync kjxj-amazon-template-prompts"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-amazon-title-optimizer \
   "/Users/apple/.codex/skills/kjxj-amazon-title-optimizer" \
   "Sync kjxj-amazon-title-optimizer"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amzai-make-jdmx \
+  "/Users/apple/.agents/skills/kjxj-amzai-make-jdmx" \
+  "Sync kjxj-amzai-make-jdmx"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-export-ss-data \

@@ -13,9 +13,11 @@
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
-- `kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline`
+- `kjxj-amazon-monthly-report-analyzer`
+- `kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer`
+- `kjxj-amzai-make-jdmx`
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
@@ -33,9 +35,11 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
-npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-listing-pipeline -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-template-prompts -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdmx -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
@@ -132,32 +136,66 @@ npx skills add nexscope-ai/Amazon-Skills --skill amazon-product-research2 -g
 Research "wireless earbuds" as a product opportunity on Amazon
 ```
 
-### `kjxj-amazon-monthly-report-analyzer`
-
-简介：
-
-- 解析 Amazon Seller Central 月度报告摘要 PDF，提取多店铺、多商城的收入、支出、广告费和利润，并生成中文 Excel 汇总、经营结论与预警。
-
-示例提示词：
-
-```text
-使用 kjxj-amazon-monthly-report-analyzer 分析我上传的 Amazon MonthlySummary PDF，并生成中文财务汇总 Excel。
-```
-
-```text
-汇总多个店铺和国家的月度报告，分析净利润、ACOS 与经营预警。
-```
-
 ### `kjxj-amazon-listing-pipeline`
 
 简介：
 
-- Run an end-to-end Amazon listing workflow from a Codex conversation and uploaded attachments: collect evidence and keywords, optimize Listing and 2026 title fields, create PPC and
+- Run an end-to-end Amazon listing workflow from a Codex conversation and uploaded attachments: collect evidence and keywords, optimize Listing and 2026 title fields, create PPC and 
 
 示例提示词：
 
 ```text
 Use kjxj-amazon-listing-pipeline to help me with this skill workflow.
+```
+
+### `kjxj-amazon-monthly-report-analyzer`
+
+简介：
+
+- Parses Amazon Seller Central "Monthly Summary"/"月度报告摘要" PDF statements (any marketplace language — French, German, Dutch, English, Swedish, etc.
+
+示例提示词：
+
+```text
+pip install -r scripts/requirements.txt --break-system-packages
+```
+
+```text
+python3 scripts/main.py --input <PDF所在文件夹> --output <输出xlsx路径>
+```
+
+### `kjxj-amazon-template-prompts`
+
+简介：
+
+- Generate complete, copy-ready Amazon product prompt templates for all North American and European marketplaces from one source-market template.
+
+示例提示词：
+
+```text
+python3 scripts/template_parser_renderer.py \
+  --template source-template.txt \
+  --market-data market-data.json \
+  --output generated-templates.json
+
+python3 scripts/validate_generated_templates.py \
+  --input generated-templates.json
+```
+
+```text
+使用 Amazon 跨市场模板提示词 将以下英国商品模板扩展为欧盟 9 个 Amazon 站点的完整提示词。请基于实时 Amazon 页面和实时汇率生成数据；每个站点单独输出一个可复制文本框。模版内容：“
+使用 $Amazon Listing Conversation Pipeline 执行英国猫抓垫商品Amazon Listing 优化与分类报告同步。
+国家站：UK
+主ASIN：B0GKDK191Q
+变体：B0GKDK191Q-白色-(60 x 40 cm)；B0GKDRNR72-自然色-(60 x 40 cm)
+产品类型：cat scratching mat
+竞品ASIN：B0FXWM6BWB、B0GHM9Z2KM、B0DXK1PZ5Z
+材质：剑麻
+产品事实/卖点：强粘、加厚耐用、耐磨、底部防滑、易清洁
+售价：18 EUR
+成本：8 EUR
+日预算：8 EUR
+”
 ```
 
 ### `kjxj-amazon-title-optimizer`
@@ -170,6 +208,19 @@ Use kjxj-amazon-listing-pipeline to help me with this skill workflow.
 
 ```text
 Use kjxj-amazon-title-optimizer to help me with this skill workflow.
+```
+
+### `kjxj-amzai-make-jdmx`
+
+简介：
+
+- Analyze an Amazon competitor product URL or an ASIN with its marketplace, and extract 5-8 target-market keywords plus a 50-80-word concise product description for AI product-detail
+
+示例提示词：
+
+```text
+【关键词】:keyword 1,keyword 2,keyword 3,keyword 4,keyword 5
+【简短描述】:One 50-80-word paragraph in the marketplace language.
 ```
 
 ### `kjxj-export-ss-data`
@@ -250,7 +301,7 @@ python3 <skill-dir>/scripts/export_support.py resolve-workflow \
 
 简介：
 
-- 将用户指定文件或零碎文本智能整理并同步到跨境电商云盘，含目录归类、长期资源索引维护、文本台账、冲突判断、图片/PDF 压缩和月度操作日志。Use when the user asks to sync, copy, archive, update, overwrite, append, classify, or store files/text in the
+- 将用户指定文件或零碎文本智能整理并同步到跨境电商云盘，含目录归类、长期资源索引维护、文本台账、冲突判断、图片/PDF 压缩和月度操作日志。Use when the user asks to sync, copy, archive, update, overwrite, append, classify, or store files/text in the 
 
 示例提示词：
 
@@ -339,9 +390,11 @@ scripts/sync-all-team-skills.sh
 - `amazon-listing-optimization2` -> `/Users/apple/.codex/skills/amazon-listing-optimization2`
 - `amazon-ppc-campaign2` -> `/Users/apple/.agents/skills/amazon-ppc-campaign2`
 - `amazon-product-research2` -> `/Users/apple/.agents/skills/amazon-product-research2`
-- `kjxj-amazon-monthly-report-analyzer` -> `/Users/apple/.agents/skills/kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline` -> `/Users/apple/.codex/skills/kjxj-amazon-listing-pipeline`
+- `kjxj-amazon-monthly-report-analyzer` -> `/Users/apple/.agents/skills/kjxj-amazon-monthly-report-analyzer`
+- `kjxj-amazon-template-prompts` -> `/Users/apple/.codex/skills/kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer` -> `/Users/apple/.codex/skills/kjxj-amazon-title-optimizer`
+- `kjxj-amzai-make-jdmx` -> `/Users/apple/.agents/skills/kjxj-amzai-make-jdmx`
 - `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing` -> `/Users/apple/.agents/skills/kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive` -> `/Users/apple/.agents/skills/kjxj-sync-cloud-drive`

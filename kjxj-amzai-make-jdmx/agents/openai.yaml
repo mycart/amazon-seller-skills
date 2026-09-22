@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Competitor Keywords"
+  short_description: "Extract marketplace keywords and concise product summaries"
+  default_prompt: "Use $kjxj-amzai-make-jdmx to analyze this Amazon competitor link: <URL>."

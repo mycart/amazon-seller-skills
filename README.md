@@ -9,9 +9,11 @@ This repository is a monorepo for Codex skills used by the team.
 - `amazon-listing-optimization2`
 - `amazon-ppc-campaign2`
 - `amazon-product-research2`
-- `kjxj-amazon-monthly-report-analyzer`
 - `kjxj-amazon-listing-pipeline`
+- `kjxj-amazon-monthly-report-analyzer`
+- `kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer`
+- `kjxj-amzai-make-jdmx`
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
@@ -34,9 +36,11 @@ npx skills add mycart/amazon-seller-skills --skill amazon-asin-availability-moni
 npx skills add mycart/amazon-seller-skills --skill amazon-listing-optimization2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-ppc-campaign2 -g
 npx skills add mycart/amazon-seller-skills --skill amazon-product-research2 -g
-npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-listing-pipeline -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-analyzer -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-template-prompts -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdmx -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
