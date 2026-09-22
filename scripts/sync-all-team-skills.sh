@@ -54,6 +54,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync kjxj-amzai-make-jdmx"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-amzai-make-jdsm \
+  "/Users/apple/.agents/skills/kjxj-amzai-make-jdsm" \
+  "Sync kjxj-amzai-make-jdsm"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-export-ss-data \
   "/Users/apple/.codex/skills/kjxj-export-ss-data" \
   "Sync kjxj-export-ss-data"

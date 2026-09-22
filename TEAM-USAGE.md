@@ -18,6 +18,7 @@
 - `kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer`
 - `kjxj-amzai-make-jdmx`
+- `kjxj-amzai-make-jdsm`
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
@@ -40,6 +41,7 @@ npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-an
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-template-prompts -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdmx -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdsm -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
@@ -223,6 +225,22 @@ Use kjxj-amazon-title-optimizer to help me with this skill workflow.
 【简短描述】:One 50-80-word paragraph in the marketplace language.
 ```
 
+### `kjxj-amzai-make-jdsm`
+
+简介：
+
+- Analyze an Amazon competitor product URL or an ASIN with its marketplace, then produce a 100-150-word custom instruction for AI product-detail creation.
+
+示例提示词：
+
+```text
+Use $kjxj-amzai-make-jdsm to analyze this competitor: https://www.amazon.de/dp/B0GD7M884P
+```
+
+```text
+Use $kjxj-amzai-make-jdsm to analyze B0GD7M884P for Amazon.de.
+```
+
 ### `kjxj-export-ss-data`
 
 简介：
@@ -395,6 +413,7 @@ scripts/sync-all-team-skills.sh
 - `kjxj-amazon-template-prompts` -> `/Users/apple/.codex/skills/kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer` -> `/Users/apple/.codex/skills/kjxj-amazon-title-optimizer`
 - `kjxj-amzai-make-jdmx` -> `/Users/apple/.agents/skills/kjxj-amzai-make-jdmx`
+- `kjxj-amzai-make-jdsm` -> `/Users/apple/.agents/skills/kjxj-amzai-make-jdsm`
 - `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing` -> `/Users/apple/.agents/skills/kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive` -> `/Users/apple/.agents/skills/kjxj-sync-cloud-drive`

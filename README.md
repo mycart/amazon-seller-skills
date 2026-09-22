@@ -14,6 +14,7 @@ This repository is a monorepo for Codex skills used by the team.
 - `kjxj-amazon-template-prompts`
 - `kjxj-amazon-title-optimizer`
 - `kjxj-amzai-make-jdmx`
+- `kjxj-amzai-make-jdsm`
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
@@ -41,6 +42,7 @@ npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-monthly-report-an
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-template-prompts -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amazon-title-optimizer -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdmx -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdsm -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g

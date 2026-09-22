@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon Competitor Detail Brief"
+  short_description: "Turn competitor listings into creation briefs"
+  default_prompt: "Use $kjxj-amzai-make-jdsm to analyze this Amazon competitor: https://www.amazon.de/dp/B0GD7M884P"
