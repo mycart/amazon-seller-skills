@@ -18,6 +18,7 @@ This repository is a monorepo for Codex skills used by the team.
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
+- `kjxj-sync-amz-inventory`
 - `kjxj-sync-product-listing`
 - `monitor-amazon-listing-chrome`
 - `monitor-asin-sale-chrome`
@@ -46,6 +47,7 @@ npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdsm -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-amz-inventory -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-product-listing -g
 npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
