@@ -22,6 +22,7 @@
 - `kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive`
+- `kjxj-sync-amz-inventory`
 - `kjxj-sync-product-listing`
 - `monitor-amazon-listing-chrome`
 - `monitor-asin-sale-chrome`
@@ -45,6 +46,7 @@ npx skills add mycart/amazon-seller-skills --skill kjxj-amzai-make-jdsm -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-export-ss-data -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-optimize-sync-listing -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-cloud-drive -g
+npx skills add mycart/amazon-seller-skills --skill kjxj-sync-amz-inventory -g
 npx skills add mycart/amazon-seller-skills --skill kjxj-sync-product-listing -g
 npx skills add mycart/amazon-seller-skills --skill monitor-amazon-listing-chrome -g
 npx skills add mycart/amazon-seller-skills --skill monitor-asin-sale-chrome -g
@@ -327,6 +329,34 @@ python3 <skill-dir>/scripts/export_support.py resolve-workflow \
 python3 <skill-dir>/scripts/check_sync_item.py --source "/absolute/source" --target "/absolute/target" --hash
 ```
 
+### `kjxj-sync-amz-inventory`
+
+简介：
+
+- 将用户提供的产品信息 Excel 中 `Item Code` 对应的可售库存同步到 Amazon 库存模板的 `Template` 工作表 `Quantity` 列。始终生成目标文件副本，不覆盖原文件；库存小于等于 5 时写入 0，并跳过未匹配、多重匹配或无效库存行。
+
+示例提示词：
+
+```text
+使用 $kjxj-sync-amz-inventory 将产品信息源文件的可售库存同步到 Amazon 库存模板。
+```
+
+命令行预检：
+
+```bash
+python3 <skill-dir>/scripts/sync_inventory.py plan \
+  --source /absolute/产品信息.xlsx \
+  --target /absolute/amazon-template.xlsm
+```
+
+确认后执行：
+
+```bash
+python3 <skill-dir>/scripts/sync_inventory.py apply \
+  --source /absolute/产品信息.xlsx \
+  --target /absolute/amazon-template.xlsm
+```
+
 ### `kjxj-sync-product-listing`
 
 简介：
@@ -417,6 +447,7 @@ scripts/sync-all-team-skills.sh
 - `kjxj-export-ss-data` -> `/Users/apple/.codex/skills/kjxj-export-ss-data`
 - `kjxj-optimize-sync-listing` -> `/Users/apple/.agents/skills/kjxj-optimize-sync-listing`
 - `kjxj-sync-cloud-drive` -> `/Users/apple/.agents/skills/kjxj-sync-cloud-drive`
+- `kjxj-sync-amz-inventory` -> `/Users/apple/.codex/skills/kjxj-sync-amz-inventory`
 - `kjxj-sync-product-listing` -> `/Users/apple/.codex/skills/kjxj-sync-product-listing`
 - `monitor-amazon-listing-chrome` -> `/Users/apple/.codex/skills/monitor-amazon-listing-chrome`
 - `monitor-asin-sale-chrome` -> `/Users/apple/.codex/skills/monitor-asin-sale-chrome`

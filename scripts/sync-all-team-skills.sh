@@ -74,6 +74,11 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   "Sync kjxj-sync-cloud-drive"
 
 "${REPO_ROOT}/scripts/sync-skill.sh" \
+  kjxj-sync-amz-inventory \
+  "/Users/apple/.codex/skills/kjxj-sync-amz-inventory" \
+  "Sync kjxj-sync-amz-inventory"
+
+"${REPO_ROOT}/scripts/sync-skill.sh" \
   kjxj-sync-product-listing \
   "/Users/apple/.codex/skills/kjxj-sync-product-listing" \
   "Sync kjxj-sync-product-listing"
